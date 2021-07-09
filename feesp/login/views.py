@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from typing import cast
 from django.contrib import messages
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 from login.models import Account
 from django.utils import timezone
 
@@ -14,6 +14,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.views.decorators.csrf import requires_csrf_token
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
     return render(request,'base.html')
@@ -48,10 +49,9 @@ def log_in(request):
         if(Account.objects.filter(username=username).exists()):
            user = Account.objects.get(username=username)
            if user.check_password(password):
-                #login(request, Account)
+                login(request, user)
                 user.last_login = timezone.now()
                 user.save(update_fields=['last_login'])
-                messages.success(request, 'you are logged')
                 return render(request,'home.html')
            else:
                 messages.error(request, 'Invalid password')
@@ -94,6 +94,9 @@ def password_reset_request(request):
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="password/password_reset.html", context={"password_reset_form":password_reset_form})
 
-
-
+@login_required
+def log_out(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return render(request,'base.html')
           

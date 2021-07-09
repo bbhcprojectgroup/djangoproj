@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -134,6 +134,7 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'./static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL='login.Account'
-AUTHENTICATION_BACKENDS = ('login.backends.MyAuthBackend','django.contrib.auth.backends.ModelBackend',)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
