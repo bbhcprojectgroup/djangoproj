@@ -1,11 +1,11 @@
 var card = document.getElementById("card");
       
-function openRegister(){
+function openLogin(){
     card.style.transform = "rotateY(-180deg)";
   
     
 }
-function openLogin(){
+function openRegister(){
     card.style.transform = "rotateY(0deg)";
 }
 /***********function for register password unmask */
@@ -27,3 +27,17 @@ function passVisible1() {
         x.type = "password";
       }
   }
+  function simpas(){
+    var pass1=document.getElementById("pass");
+    var pass2=document.getElementById("passc");
+    if(pass1!=pass2)
+    {
+      pass2.setAttribute(ValidityState,false);
+      pass2.textContent=" ";
+    }
+    else{
+      pass2.setAttribute(ValidityState,true);
+    }
+  }
+
+  

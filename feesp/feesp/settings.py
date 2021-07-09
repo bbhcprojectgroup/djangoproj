@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'login',
 ]
+
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,8 +80,12 @@ WSGI_APPLICATION = 'feesp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'login',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
+        'USER':'root',
+        'PASSWORD':'Kavya@99',
     }
 }
 
@@ -125,3 +133,7 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'./static')]
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL='login.Account'
+AUTHENTICATION_BACKENDS = ('login.backends.MyAuthBackend','django.contrib.auth.backends.ModelBackend',)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

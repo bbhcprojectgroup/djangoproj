@@ -1,0 +1,229 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+#header
+{
+    background-image: url(../images/college.jpeg);
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+}
+.navbar-toggler{
+    border:none!important;
+    outline:none!important;
+}
+nav .fa-bars
+{
+    color:#fff;
+    font-size:26px;
+}
+.navbar-nav
+{
+    float:right;
+    color:floralwhite!important;
+    clear: right;
+}
+.log-text{
+
+    float:right;
+    clear:right;
+}
+.navbar-brand img{
+    margin-left:30px;
+
+}
+/*-----------Welcome Text----------------*/
+.welcome{
+    padding:50px 100px;
+    margin-top:-140px;
+    box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
+    background:rgba(0,0, 0, 0.5);
+    backdrop-filter:blur(30px);
+}
+.welcome h1, h2{
+    color:floralwhite;
+
+}
+/*--------------Info-----------*/
+#Info{
+    padding-top:100px;
+    padding-bottom:100px;
+}
+/*-----------------fees------------------*/
+.pay .acad-btn{
+    margin-top:10px;
+    padding:10px 30px;
+    border-radius: 30px;
+    color:#fff;
+    background-color: #013f7e;
+}
+#payment .col-md-6{
+    padding:20px 10px;
+
+}
+#payment h3{
+    margin:20px auto;
+    
+}
+#payment .col-md-6 img{
+    box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
+}
+.footer{
+	background-color: #888;
+	color:floralwhite;
+	margin:0px auto;
+	padding:20px 0px 0px 0px;
+	top: 20%;
+	z-index: 1000;
+}
+
+.feedback,.acadform{
+	padding:170px 30px 170px 30px;
+	margin:0px auto;
+	max-width: 50%;
+}
+.feed-card {
+	box-shadow: 0 25px 45px 0 rgba(0,0,0,0.4);
+	transition: 0.3s;
+	border-radius: 10px; /* 5px rounded corners */
+	margin-bottom:10%;
+	z-index: 1000;
+	background:rgba(0,0, 0, 0.2);
+	border: 1px solid rgb(255,255,255,0.25);
+	backdrop-filter: blur(25px);
+	padding-top: 20px;
+  }
+  .feedback::before{
+	  content:'';
+	  position: absolute;
+	  width: 400px;
+	  height: 400px;
+	  background: linear-gradient(#ffeb3b,#e91e63);
+	  border-radius: 50%;
+	  transform: translate(-140px,-40px);
+  }
+  .feedback::after{
+	content:'';
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	background: linear-gradient(#e91e63,#2196f3);
+	border-radius: 50%;
+	transform: translate(600px,-340px);
+}
+.feedmsg{
+	font-family: 'Times New Roman', Times, serif;
+	font-size:25px;
+	margin-top: 50px!important;
+	font-weight: bold;
+}
+.form-group{
+	position:relative;
+	color:#fff;
+}
+.form-cntrl input, .form-cntrl textarea{
+	position:absolute;
+	width:100%;
+	background:transparent;
+	border:none;
+	outline:none;
+	z-index:1;
+	color:#000;
+	border-radius:10px;
+	margin-top: 5px !important;
+}
+.form-cntrl .text{
+	position:absolute;
+	left:20px;
+	top:0;
+	line-height:40px;
+	font-size:18px;
+	display:block;
+	transform:0.5s;
+	pointer-events: none;
+
+}
+.form-cntrl input:focus + .text, .form-cntrl input:valid + .text,.form-cntrl textarea:focus + .text, .form-cntrl textarea:valid + .text
+{
+	top:-35px;
+	left:-10px;
+}
+textarea{
+	height:44px;
+}
+.form-cntrl .line{
+	position:absolute;
+	bottom:-40px!important;
+	display:block;
+	width:100%;
+	height:2px;
+	background:#fff;
+	transform:0.5s;
+	border-radius:2px ;
+	pointer-events: none;
+
+}
+.form-cntrl input:focus ~ .line, .form-cntrl input:valid~ .line{
+
+	height: 35px!important;
+}
+.form-cntrl textarea:focus ~ .line, .form-cntrl textarea:valid ~ .line{
+
+	height: 44px!important;
+}
+.btan{
+	font-weight: 600;
+	font-size: 18px;
+	background-color: chocolate;
+	width:fit-content;
+}
+@media(max-width:450){
+	.feedback{
+		max-width: 700px;
+		max-height: 100vh!important;
+		padding-bottom: 0!important;
+	}
+	.card{
+		padding-right: -10px!important;
+	}
+}
+
+@media (max-width:767px)
+{
+	.feedback{
+		max-width: 700px;
+	}
+	.feedback::before{
+		width: 200px;
+		height: 200px;
+
+	}
+	.feedback::after{
+		width: 200px;
+		height: 200px;
+		transform: translate(40%,-150px);
+	}
+
+}
+@media(max-width:1024px)
+{
+	.feedback::before{
+		width: 200px;
+		height: 200px;
+
+	}
+	.feedback::after{
+		width: 200px;
+		height: 200px;
+		transform: translate(80%,-150px);
+
+	}
+}
+
+.card-header{
+    background:rgba(0,0, 0, 0.2)!important;
+}
+.card-body{
+    background:rgba(94, 89, 89, 0.2);
+}
