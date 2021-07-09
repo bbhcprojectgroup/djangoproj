@@ -4,7 +4,7 @@ from typing import cast
 from django.contrib import messages
 from django.contrib.auth import login,authenticate
 from login.models import Account
-
+from django.utils import timezone
 
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.forms import PasswordResetForm
@@ -13,11 +13,12 @@ from django.db.models.query_utils import Q
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
+from django.views.decorators.csrf import requires_csrf_token
 # Create your views here.
 def home(request):
     return render(request,'base.html')
 
-    
+@requires_csrf_token   
 def register(request):
     if request.method =='POST':
          username=request.POST['username']
@@ -47,6 +48,9 @@ def log_in(request):
         if(Account.objects.filter(username=username).exists()):
            user = Account.objects.get(username=username)
            if user.check_password(password):
+                #login(request, Account)
+                user.last_login = timezone.now()
+                user.save(update_fields=['last_login'])
                 messages.success(request, 'you are logged')
                 return render(request,'home.html')
            else:
