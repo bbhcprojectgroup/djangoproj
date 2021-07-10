@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <script src="https://kit.fontawesome.com/64d58efce2.js"
+         crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylehome.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>
+            Feedback
+        </title>
+    </head>
+    <body style="background-color: black;">
+        <nav class="navbar navbar-dark navbar-expand-sm fixed-top mb-5">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
+                    <span class="navbar-toggler-icon"></span>
+                    
+                </button>
+                <a class="navbar-brand mr-5" href="#"> <img src="images/bbhlogo.jpeg" height="30" width="41" alt="logo">
+                </a>
+                <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link mr-5" href="./home.html"><span class="fa fa-home fa-lg"></span> Home</a></li>
+                     <li class="nav-item"><a class="nav-link mr-5" href="./aboutus.html"><span class="fa fa-info fa-lg"></span> About</a></li>
+                      <li class="nav-item"><a class="nav-link active mr-5" href="#"><span class="fa fa-pen-square fa-lg mr-1"></span>Feedback</a></li>
+                      <!---- <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span></a></li>-->
+    
+                 </ul>
+                 <span class="navbar-text">
+
+                        <span class="fa fa-sign-out"></span>log out
+                    
+                 </span>
+            </div>
+    
+            </div>
+    
+        </nav>
+        <div class="feedback">
+            <div class="containers mt-5 mb-5">
+                <div class="card feed-card">
+                    <div class="row row-content">
+                        <div class="col-8 col-md-9">
+                            
+                            <form class="feedform">
+                                <div class="form-group row justify-content-center">
+                                    <div class="col col-md-10 form-cntrl">
+                                        <input type="text" id="firstname" name="firstname" required>
+                                        <span class="text">First Name</span>
+                                        <span class="line"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col col-md-10 form-cntrl mt-5">
+                                        <input type="text" id="lastname" name="lastname" required>
+                                        <span class="text">Last Name</span>
+                                        <span class="line"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class=" col col-md-10 form-cntrl mt-5">
+                                        <input type="text" id="MobileNO" name="MobileNo"  pattern="^\d{10}$" oninvalid="this.setCustomValidity('Phone number should contain 10 digits!')" oninput="this.setCustomValidity('')" required >
+                                        <span class="text">Mobile Number</span>
+                                        <span class="line"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col col-md-10 form-cntrl mt-5">
+                                        <input type="email" id="mailId" name="mailId" required>
+                                        <span class="text">Email Id</span>
+                                        <span class="line"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col col-md-10 form-cntrl mt-5 mb-5 pb-2">
+                                        <textarea id="feedinfo" name="feedback" required></textarea>
+                                        <span class="text">Feedback</span>
+                                        <span class="line"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <div class="col col-md-10 form-cntrl mb-0">
+                                        <button type="submit" class="btn btn-warning btn-lg btan">Send Feedback</button> 
+                                        </div>
+                                </div>
+                                
+        
+                            </form>
+                        </div>
+                         <div class="d-none d-md-block col-md m-auto feedmsg">
+                                <p>Hope your work was done!!! Help us improve our service.<br>Please share feedback based on your experience.</p>
+                                
+                        </div>
+                   </div>    
+                </div>
+               
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <div class="container">
+                <div class="row">             
+                
+                    <div class="col-12 col-sm-6 address">
+                        <h5>Our Address</h5>
+                        <address>
+                         Opposite Aadharsha hosptl,
+                         near mookambika tiles, kundapura
+                         Karnataka-576201<br>
+                          <i class="fa fa-phone fa-lg"></i>: 08254-235589<br>
+                          <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link">bbhegdecollegekundapur@rediffmail.com</a>
+                       </address>
+                    </div>
+                    <div class="col-12 col-sm-6 align-self-center">
+                        <div class="text-center">
+                            <a class="btn btn-social-icon btn-google mr-3" href="https://bbhegdecollege.in/" target="blank"><i class="fa fa-google-plus fa-lg"></i> </a>
+                            <a class="btn btn-social-icon btn-facebook mr-3" href="https://www.facebook.com/Dr-BB-Hegde-First-Grade-College-BBHC-878478628896016/" target="blank"><i class="fa fa-facebook fa-lg"></i> </a>
+                           <a class="btn btn-social-icon btn-google mr-3" href="https://youtube.com/channel/UC_YbvrqDgf_CS500hPEt2rw" target="blank"><i class="fa fa-youtube fa-lg"></i> </a>
+                            <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/dr.bbhckundapura/?utm_medium=copy_link" target="blank"><i class="fa fa-instagram fa-lg"></i> </a>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

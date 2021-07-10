@@ -65,7 +65,7 @@ def log_in(request):
 
 
 
-
+@requires_csrf_token   
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)

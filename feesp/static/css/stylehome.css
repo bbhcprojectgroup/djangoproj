@@ -78,11 +78,20 @@ nav .fa-bars
 	z-index: 1000;
 }
 
+.card-header{
+    background:rgba(0,0, 0, 0.2)!important;
+}
+.card-body{
+    background:rgba(94, 89, 89, 0.2);
+}
+/*********feedback and acadform************/
 .feedback,.acadform{
 	padding:170px 30px 170px 30px;
 	margin:0px auto;
 	max-width: 50%;
 }
+
+
 .feed-card {
 	box-shadow: 0 25px 45px 0 rgba(0,0,0,0.4);
 	transition: 0.3s;
@@ -113,6 +122,7 @@ nav .fa-bars
 	transform: translate(600px,-340px);
 }
 .feedmsg{
+	color: azure;
 	font-family: 'Times New Roman', Times, serif;
 	font-size:25px;
 	margin-top: 50px!important;
@@ -221,9 +231,3 @@ textarea{
 	}
 }
 
-.card-header{
-    background:rgba(0,0, 0, 0.2)!important;
-}
-.card-body{
-    background:rgba(94, 89, 89, 0.2);
-}
