@@ -1,5 +1,5 @@
 from django.contrib import admin
-from examfee.models import sublist,examfeepaid
+from examfee.models import sublist,examfeepaid, site_settings, association
 from login.admin import ac_site
 # Register your models here.
 
@@ -13,9 +13,19 @@ class examfeepaidAdmin(admin.ModelAdmin):
 
 class sublistAdmin(admin.ModelAdmin):
     list_display=('sub_code','subject','fee')
-    change_list_template='admin/snippet.html'
 
 
+
+class site_settingsAdmin(admin.ModelAdmin):
+    list_display=('siteEnable','semester')
+    def has_add_permission(self, request):
+        return False
+    def has_delete_permission(self, request, obj=None):
+        return False
+    
+   
 
 ac_site.register(examfeepaid,examfeepaidAdmin)
 ac_site.register(sublist,sublistAdmin)
+ac_site.register(site_settings,site_settingsAdmin)
+ac_site.register(association)

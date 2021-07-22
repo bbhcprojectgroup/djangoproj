@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,33 +7,34 @@
         <script src="https://kit.fontawesome.com/64d58efce2.js"
          crossorigin="anonymous"></script>
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="stylehome.css">
+        <link rel="stylesheet" href="{% static 'css/feedback.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>
             Feedback
         </title>
     </head>
-    <body style="background-color: black;">
+    <body>
+    <!--<body style="background-color: rgba(0, 0, 0, 0.932)";-->
         <nav class="navbar navbar-dark navbar-expand-sm fixed-top mb-5">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
                     <span class="navbar-toggler-icon"></span>
                     
                 </button>
-                <a class="navbar-brand mr-5" href="#"> <img src="images/bbhlogo.jpeg" height="30" width="41" alt="logo">
+                <a class="navbar-brand mr-5" href="#"> <img src="{% static 'images/bbhlogo.jpeg' %}" height="30" width="41" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse" id="Navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link mr-5" href="./home.html"><span class="fa fa-home fa-lg"></span> Home</a></li>
-                     <li class="nav-item"><a class="nav-link mr-5" href="./aboutus.html"><span class="fa fa-info fa-lg"></span> About</a></li>
+                    <li class="nav-item"><a class="nav-link mr-5" href="/"><span class="fa fa-home fa-lg"></span> Home</a></li>
+                     <li class="nav-item"><a class="nav-link mr-5" href="/index"><span class="fa fa-info fa-lg"></span> About</a></li>
                       <li class="nav-item"><a class="nav-link active mr-5" href="#"><span class="fa fa-pen-square fa-lg mr-1"></span>Feedback</a></li>
                       <!---- <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span></a></li>-->
     
                  </ul>
                  <span class="navbar-text">
 
-                        <span class="fa fa-sign-out"></span>log out
-                    
+                        <span class="fa fa-sign-out"></span>
+                        <a href="/log_out">log out</a>
                  </span>
             </div>
     
@@ -45,7 +47,8 @@
                     <div class="row row-content">
                         <div class="col-8 col-md-9">
                             
-                            <form class="feedform">
+                            <form class="feedform" action="feedback" method="post">
+                                {% csrf_token %} 
                                 <div class="form-group row justify-content-center">
                                     <div class="col col-md-10 form-cntrl">
                                         <input type="text" id="firstname" name="firstname" required>
@@ -128,5 +131,17 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% if messages %}
+               
+        {% for message in messages %}
+             <script>
+                $(document).ready(function () {
+                alert('{{message}}');
+            });
+            </script>
+        {% endfor %}
+   
+{% endif %}        
+                  
     </body>
 </html>

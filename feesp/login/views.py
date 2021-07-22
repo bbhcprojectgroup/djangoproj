@@ -17,11 +17,17 @@ from django.views.decorators.csrf import requires_csrf_token
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def home(request):
-    return render(request,'base.html')
+    return render(request,'home.html')
+
+"""def feedback(request):
+    return render(request,'feedback.html')"""
+
+def about_us(request):
+    return render(request,'about.html')
 
 @requires_csrf_token   
 def register(request):
-    if request.method =='POST':
+    if (request.method =='POST'):
          username=request.POST['username']
          phone=request.POST['phone']
          email=request.POST['email']
@@ -30,7 +36,7 @@ def register(request):
          user.save()
          #request.session['username'] = user.username
          messages.success(request, 'user name created')   
-         return redirect('/')
+    return render(request,'base.html')
               
 
 

@@ -1,13 +1,11 @@
+
 *{
     padding: 0;
     margin: 0;
 }
 #header
 {
-    background-image: url(../images/college.jpeg);
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
+	background:#000;
 }
 .navbar-toggler{
     border:none!important;
@@ -35,28 +33,63 @@ nav .fa-bars
 }
 /*-----------Welcome Text----------------*/
 .welcome{
-    padding:50px 100px;
-    margin-top:-140px;
+	
+    padding:100px 100px;
+    margin-top:1%;
     box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
-    background:rgba(0,0, 0, 0.5);
-    backdrop-filter:blur(30px);
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(1px);
+	z-index:6;
+	
+	
 }
-.welcome h1, h2{
+.welcome h1, h2, emp{
     color:floralwhite;
+	font-family: "Kaushan Script", cursive;
 
 }
+.welcome h2{
+	font-size: 40px;
+
+}
+.card-header h5{
+	color: darkred ;
+}
+
+#frame1,#frame2,#frame3 {
+	background-image:  url(../images/5.jpg);
+	background-size: cover;
+    background-position: center;
+	
+}
+/********************info***************************/
+.background{
+	background-image: url(../images/4.jpg);
+    height: 200vh;
+    background-size: cover;
+    background-position: center;
+	
+	
+}
+
 /*--------------Info-----------*/
 #Info{
     padding-top:100px;
     padding-bottom:100px;
+	
 }
+#Info p{
+	font-family: "Berkshire Swash";
+	font-size: 16px;
+}
+
 /*-----------------fees------------------*/
 .pay .acad-btn{
     margin-top:10px;
     padding:10px 30px;
     border-radius: 30px;
     color:#fff;
-    background-color: #013f7e;
+    background-color: #00478d;
 }
 #payment .col-md-6{
     padding:20px 10px;
@@ -64,13 +97,18 @@ nav .fa-bars
 }
 #payment h3{
     margin:20px auto;
-    
+    font-family: "Cinzel Decorative";
+	font-size: 25px;
+}
+#payment p{
+	font-family: "Merienda";
+	font-size: 14px;
 }
 #payment .col-md-6 img{
     box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
 }
 .footer{
-	background-color: #888;
+	background-color:rgb(58, 53, 53);
 	color:floralwhite;
 	margin:0px auto;
 	padding:20px 0px 0px 0px;
@@ -78,20 +116,11 @@ nav .fa-bars
 	z-index: 1000;
 }
 
-.card-header{
-    background:rgba(0,0, 0, 0.2)!important;
-}
-.card-body{
-    background:rgba(94, 89, 89, 0.2);
-}
-/*********feedback and acadform************/
 .feedback,.acadform{
 	padding:170px 30px 170px 30px;
 	margin:0px auto;
 	max-width: 50%;
 }
-
-
 .feed-card {
 	box-shadow: 0 25px 45px 0 rgba(0,0,0,0.4);
 	transition: 0.3s;
@@ -122,7 +151,6 @@ nav .fa-bars
 	transform: translate(600px,-340px);
 }
 .feedmsg{
-	color: azure;
 	font-family: 'Times New Roman', Times, serif;
 	font-size:25px;
 	margin-top: 50px!important;
@@ -188,7 +216,11 @@ textarea{
 	background-color: chocolate;
 	width:fit-content;
 }
+
 @media(max-width:450){
+	.about .carousel-item{
+		min-height: 100%;
+	}
 	.feedback{
 		max-width: 700px;
 		max-height: 100vh!important;
@@ -197,10 +229,69 @@ textarea{
 	.card{
 		padding-right: -10px!important;
 	}
+	.welcome emp{
+		font-size:1px;
+	}
+	.welcome h2{
+		font-size: 10px;	
+	}
+
+	#wel1 p{
+		font-size:14px;
+	}
+	#wel1 h2{
+		font-size: 22px;	
+	}
+	#wel1 h1{
+		font-size: 25px;
+	}
+
+	#wel2 p, emp{
+		font-size:12px;
+	}
+	#wel2 h2{
+		font-size: 21px;	
+	}
+	#wel2 h1{
+		font-size: 25px;
+	}
+	
+	/*-----Accordion-**/
+	section.background{
+		height: 400vh;
+	}
 }
 
 @media (max-width:767px)
 {
+	/***********carousel*******************/
+	.carousel-item{
+		height: 75vh;
+	}
+	
+	/***********welcom*******************/
+	#wel1 p{
+		font-size:14px;
+	}
+	#wel1 h2{
+		font-size: 22px;	
+	}
+	#wel1 h1{
+		font-size: 25px;
+	}
+
+	#wel2 p, emp{
+		font-size:12px;
+	}
+	#wel2 h2{
+		font-size: 21px;	
+	}
+	#wel2 h1{
+		font-size: 25px;
+	}
+	
+	
+	/***********feedback*******************/
 	.feedback{
 		max-width: 700px;
 	}
@@ -214,7 +305,14 @@ textarea{
 		height: 200px;
 		transform: translate(40%,-150px);
 	}
-
+	
+	/*-----Accordion-**/
+	section.background{
+		height: 330vh;
+	}
+	
+	/***********carsoul icon*******************/
+	
 }
 @media(max-width:1024px)
 {
@@ -229,5 +327,104 @@ textarea{
 		transform: translate(80%,-150px);
 
 	}
+	.background{
+		height: 245vh;
+	}
 }
+
+.card-header{
+    background:rgba(0,0, 0, 0.2)!important;
+}
+.card-body{
+    background:rgba(94, 89, 89, 0.2);
+}
+
+
+
+/*************slider*********************************************/
+
+
+
+.about .carousel-item{
+	height: 71vh;
+    background-position: center;
+	background-size: cover;
+	z-index: 0;
+	
+}
+.about .carousel-item:before{
+	content: '';
+	position: absolute;
+    left: 0;
+	top: 0;
+    width: 100%;
+	height: 100%;
+    background-color: rgba(0,0,0,0.5);
+	z-index: -1;
+}
+.about .carousel-item .container{
+	position: absolute;
+	left: 50%;
+	top:50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+.about .carousel-item h2{
+	font-family: 'mate SC';
+	font-size: 30px;
+	color: #fff;
+	margin: 0 0 10px;
+	opacity: 1;
+}
+.about .carousel-item p{
+	font-family: "Kaushan Script", cursive;
+	font-size: 16px;
+	margin: 0;
+	color: #eee;
+	opacity: 2;
+	text-transform: lowerrcase;
+}
+
+.about .carousel-item.active h2{
+	animation: fadeInLeft 0.5s ease forwards;
+}
+.about .carousel-item.active p{
+	animation: fadeInRight 0.5s ease forwards;
+}
+
+/*********************** Arrow Indication *************************/
+.about .carousel-control-next .carousel-control-next-icon,
+.about .carousel-control-prev .carousel-control-prev-icon{
+	width: 30px;
+    opacity: 1;
+}
+.about .carousel-control-next .carousel-control-next-icon{
+	right: -90px;
+}
+.about .carousel-control-prev .carousel-control-prev-icon{
+	left: -90px;
+}
+
+@keyframes fadeInLeft{
+	0%{
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+@keyframes fadeInRight{
+	0%{
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+
+
 

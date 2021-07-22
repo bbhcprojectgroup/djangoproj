@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=yes">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"
+         crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/stylehome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    <title>Home</title>
+</head>
+<body>
+    <section id="header">
+        <nav class="navbar navbar-expand-lg navbar-dark" >
+            <a class="navbar-brand" href="#"><img src="{% static 'images/bbhlogo.jpeg' %}" height="40" width="51" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">FEEDBACK</a>
+                </li>
+              </ul>
+              <span class="navbar-text log-text mr-2">
+                LOG OUT
+              </span>
+            </div>
+          </nav>
+    </section>
+    <!------------------------welcome text-->
+    <section id="welcome" class="wow bounceInUp">
+        <div class="container">
+          <div data-wow-iteration="3" class="welcome text-center wow " >
+            <h1>Welcome to Dr B B Hegde First Grade College</h1>
+            <h2> Fees Payment Portal</h2>
+            <p>Pay academic fees and Semester examination fees online.</p>
+          </div>
+        </div>
+  
+      </section>
+      <!-----Accordion-->
+      <section id="Info" >
+        <div class="container">
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    B M Sukumar Shetty(PRESIDENT)
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
+                                <img class="d-block img-fluid" src="{% static 'images/sukumar-sir.jpeg' %}" alt="college">
+                            </div>
+                            <div class="col-12 col-md-9 text-center wow fadeInDown">
+                                <p>Sri B M Sukumar Shetty MLA, Byndoor constituency and president of coodapur education Society. Potentially managing the institution with the vision of providing education to each and every desirous student. Marching with the pursuit of educating the poorest of the poor, he is successfully managing the institution in most disciplined way.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Prof Umesh Shetty (PRINCIPAL)
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
+                            <img class="d-block img-fluid" src="{% static 'images/principal.jpeg' %}" alt="college">
+                        </div>
+                        <div class="col-12 col-md-9 text-center wow fadeInDown">
+                            <p>Served as Faculty for 23 years at Sri Bhuvanendra College, Karkala, Dr.NSAM First Grade College, Nitte, Alva’s College, Moodubidire and had taken the following major responsibilities; Ex. Dean- Faculty of Commerce Ex. HOD- Dept. of Commerce Member- NAAC Steering Committee &IQAC Ex. NSS Programme Officer Executive Editor of Dept. News Bulletins Ex. Chief Coordinator of the College days,Talents days, Farewell programmes etc. Ex. Coordinator of CA-CPT coaching programme Ex. Coordinator of HR&ER certificate course Ex. Chief Superintendent of Mangalore University Examinations Ex. Chief Coordinator of Inter College Mangalore University level Management Fest</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Chethan Shetty (VICE-PRINCIPAL)
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
+                            <img class="d-block img-fluid" src="{% static 'images/viceprinci.jpeg' %}" alt="college">
+                        </div>
+                        <div class="col-12 col-md-9 text-center wow fadeInDown">
+                            <p>Served as HOD of Kannada and NSS Officer at P.A. First Grade College and Ramakrishna College, Mangalore. In charge Principal at Dr. B. B. Hegde First Grade college from 1st July, 2018 to 9th June, 2019. Executive Editor of College Magazine ‘Shikhara’. Executive Editor of College Wall Magazine 'Dhwani’ Ex. Chief Superintendent of Mangalore University Examinations Ex. Chief Coordinator of the College days, Talents Day, Farewell Functions, PTA Meeting etc. Member of College Governing Council. Ex. Chief Coordinator of Inter Collegiate Mangalore University Literary and Cultural Competitions. Member of IQAC, Anti Ragging Committee, Staff Advisory Council, Discipline Committee, Sports Committee, N.S.S. Advisory Committee etc.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </section>
+      <!-------------------PAYMENT OPTIONS-->
+      <section id="payment">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 text-center wow fadeInLeft">
+              <img src="{% static 'images/acad.png' %}" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-justify pay wow fadeInRight">
+              <h3>Pay Academic Fees</h3>
+              <p>Pay your current year academic fees sitting at home oneline and get the receipt of the same. Download or print the receipt for future usage<br>
+               <span style="color: red;">**Installments are available</span></p>
+               <button type="button" class="btn acad-btn">Pay Academic Fees</button>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-center order-md-last wow fadeInRight">
+              <img src="{% static 'images/examfee.jpeg' %}" class="img-fluid">
+            </div>
+            <div class="col-md-6 order-md-first text-justify pay wow fadeInLeft">
+              <h3>Pay Examination Fees</h3>
+              <p>Pay your current semester fees. Select the subjects for which you want to attend exam. Do print the receipt and filled Examination Form. The filled Examination form must be submitted to college later.<br>
+             </p>
+               <button type="button" class="btn acad-btn">Pay Examination Fees</button>
+              </p>
+            </div>
+      
+  
+          </div>
+        </div>
+      </section>
+      <footer class="footer">
+        <div class="container">
+            <div class="row">             
+            
+                <div class="col-12 col-sm-6 address">
+                    <h5>Our Address</h5>
+                    <address>
+                     Opposite Aadharsha hosptl,
+                     near mookambika tiles, kundapura
+                     Karnataka-576201<br>
+                      <i class="fa fa-phone fa-lg"></i>: 08254-235589<br>
+                      <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link">bbhegdecollegekundapur@rediffmail.com</a>
+                   </address>
+                </div>
+                <div class="col-12 col-sm-6 align-self-center">
+                    <div class="text-center">
+                        <a class="btn btn-social-icon btn-google mr-3" href="https://bbhegdecollege.in/" target="blank"><i class="fa fa-google-plus fa-lg"></i> </a>
+                        <a class="btn btn-social-icon btn-facebook mr-3" href="https://www.facebook.com/Dr-BB-Hegde-First-Grade-College-BBHC-878478628896016/" target="blank"><i class="fa fa-facebook fa-lg"></i> </a>
+                       <a class="btn btn-social-icon btn-google mr-3" href="https://youtube.com/channel/UC_YbvrqDgf_CS500hPEt2rw" target="blank"><i class="fa fa-youtube fa-lg"></i> </a>
+                        <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/dr.bbhckundapura/?utm_medium=copy_link" target="blank"><i class="fa fa-instagram fa-lg"></i> </a>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </footer>
+      <!----------------------Animation------------------->
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <script>
+        new WOW().init();
+
+      </script>
+    
+</body>
+</html>

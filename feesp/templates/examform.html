@@ -1,0 +1,466 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+
+    <title>Exam Form</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       
+    <link href="{% static 'css/examstyles.css' %}" rel="stylesheet">
+</head>
+
+<body onload="sublist()" >
+    <header class="fixed-top form-head">
+        <a href="/homepage" style=" color:floralwhite;
+        background-color: transparent;
+        text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
+    </header>
+    
+    <div class="container exam-form">
+        
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+               <h3 style="text-decoration: underline;">Fill the Form below</h3>
+            </div>
+             <div class="col-12 col-md-10">
+                 <form method="POST" onsubmit="sendsub()">
+                    {% csrf_token %}
+                     <div class="form-group row">
+                         <label for="name" class="col-md-3 col-form-label">Student's Name:</label>
+                         <div class="col-md-9">
+                             <input type="text" class="form-control" id="name" name="studname" placeholder="As Registered in college" required>
+                         </div>
+                     </div>
+            
+                     <div class="form-group row">
+                        <label for="emailid" class="col-md-3 col-form-label">Email Id:</label>
+                        <div class="col-md-9">
+                            <input type="email" class="form-control" id="emailid" placeholder="Email" name="emailid" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="regNo" class="col-md-3 col-form-label">Register Number</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Register No" required>
+                        </div>
+                        <label for="month" class="col-md-3 col-form-label">Month and Year of Examination:</label>
+                        <div class="col-md-3">
+                            <input type="month" class="form-control" id="month" name="month" required>
+                        </div>
+                    </div>
+                      <div class="form-group row">
+                         <label for="clgcode" class="col-md-3 col-form-label">College Code:</label>
+                         <div class="col-md-3">
+                             <input type="text" class="form-control" id="clgCode" name="clgCode" placeholder="College Code" required>
+                         </div>
+                         <label for="roll-no" class="col-md-3 col-form-label">Roll No:</label>
+                         <div class="col-md-3">
+                            <input type="text" class="form-control" id="roll-no" name="roll-no" placeholder="Roll Number" required>
+                        </div>
+                     </div>
+                     <div class="form-group row">
+                         <label for="course" class="col-md-3 col-form-label">Course:</label>
+                         <div class="col-md-3">
+                            <select name="course" class="form-control" id="course" onchange="sublist()" >
+                                <option>BCom</option>
+                                <option>BCA</option>
+                                <option>BSc</option>
+                        
+                            </select>
+                         </div>
+                         <label for="sem" class="col-md-3 col-form-label">Semester:</label>
+                         
+                         <div class="col-md-3">
+                            <select class="form-control" id="sem" onchange="sublist()" name="sem">
+                                
+                                <option>{{sem1}}</option>
+                                <option>{{sem2}}</option>
+                                <option>{{sem3}}</option>
+                                <option>PASSED OUT</option>
+                            </select>
+                         </div>
+                        
+                     </div>
+                     <h5>SUBJECTS:</h5>
+                     <div id="subjects">
+                     </div>
+                     <h5>Select Optionals:</h5>
+                   <div id="optionals">
+                   </div>
+                   <div class="form-group row" id="assoc_row">
+                    <label id="alabel" for="association" class="col-md-3 col-form-label">Select association</label>
+                         
+                    <div class="col-md-3">
+                       <select class="form-control" id="association" onchange="update_association(this)" name="association">
+                           <option style="background-color: grey;">Select your association</option>
+                           {% for i in associations %}
+                           <option>{{i}}</option>
+                           {% endfor %}
+                       </select>
+                    </div>
+                   </div>
+                     <div class=" row" id="backlist">
+                         <div class="form-group col-md-4">
+                             <div class="form-check">
+                                 <input type="checkbox" class="form-check-input"
+                                 name="approve" id="approve" onchange="listbacks(this)">
+                                 <label class="form-check-label" for="approve">
+                                     <strong> Do you have any backlogs
+                                     </strong>
+ 
+                                 </label>
+                                 
+                         </div>
+                     </div>
+                    <label for="bsem" class="col-md-5 col-form-label" style="display: none;" id="bckloglabel">Backlog Semester(For listing multiple sem subjects, select each sem at a time)</label>
+                     <div class="form-group col-md-3" style="display: none;" id="bckloglist">
+                         <select class="form-control" id="bsem"  onchange="backlist(this)">
+                            <option>select the backlog sem</option>
+                            <option>{{sem1}}</option>
+                            <option>{{sem2}}</option>
+                            <option>{{sem3}}</option>
+                         </select>
+ 
+                     </div>
+                    </div>
+                    <div class="form-group row">
+                        <strong><label class="col-12 col-form-label" style="display: none;" id="bcklogsubheader">Select Backlog Subjects</label></strong> 
+                     </div>
+                     <div id="backsub">
+                    </div>
+                   
+                    
+
+
+
+                 <div class="form-group row justify-content-center">
+                     <div class="col-md-12">
+                         <button type="submit" class="btn">
+                             Submit
+                         </button>
+                     </div>
+                 </div>
+                     {% csrf_token %} 
+                 </form>
+             </div>
+             
+        </div>
+ 
+    </div>
+    <script
+  s rc="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script>
+        var selected_sub=[];
+        var opsublist;
+        var opsub;
+        var cur_association="null";
+        var totfield=document.getElementById('tfee');
+        var backdata=JSON.parse('{{listsub|escapejs}}');
+        function getValue(passid){
+            var semester=document.getElementById(passid)
+            var s=semester.options[semester.selectedIndex].value;
+            return s;
+        }
+     
+        function sublist(){
+            while (selected_sub.length) {
+                selected_sub.pop();
+              }
+            console.log(selected_sub);
+            //total=0;
+            opsub=0;
+            var pdiv=document.getElementById('subjects');
+            var opdiv=document.getElementById('optionals');
+            pdiv.innerHTML="";
+            opdiv.innerHTML="";
+            var s=getValue("sem");
+            console.log(s)
+            var al=document.getElementById('alabel');
+            var assoc=document.getElementById('association');
+            if(s<=4){
+               
+                al.style.display='initial';
+                assoc.style.display='initial';
+            }
+            else{
+                al.style.display='none';
+                assoc.style.display='none';
+            }
+
+            var c=getValue("course");
+            console.log(c)
+            for (let i=0; i<backdata.length;i++){
+                if(backdata[i].course==c && backdata[i].sem==s){
+                    
+                    console.log(backdata[i]);
+                    var d =document.createElement('div');
+                    d.classList.add("form-group","row");
+                    var l1=document.createElement('label');
+                    var l2=document.createElement('label');
+                    var l3=document.createElement('label');
+                    var l4=document.createElement('label');
+                    l1.classList.add("col-5","col-form-label");
+                    l2.classList.add("col-form-label");
+                    l3.classList.add("col-5","col-form-label");
+                    l4.classList.add("col-2","col-form-label");
+                    l1.textContent=backdata[i].sub_code;
+                    l2.textContent=backdata[i].sub_code;
+                    l3.textContent=backdata[i].subject;
+                    l4.textContent=backdata[i].fee;
+                    
+                    if(backdata[i].optional==false){
+                        d.appendChild(l1);
+                        d.appendChild(l3);
+                        d.appendChild(l4);
+                        pdiv.appendChild(d);
+                       // total=total+data[i].fee;
+                       console.log(selected_sub);
+                        selected_sub.push(backdata[i]);
+                    }
+                    else{
+                        var radioInput = document.createElement('input');
+                        radioInput.setAttribute('type', 'radio');
+                        radioInput.setAttribute('name', 'optional');
+                        radioInput.setAttribute('value',i);
+                        radioInput.setAttribute('onchange',"addsub(this)");
+                        radioInput.classList.add("form-radio-input","mr-2","opt")
+                        var subdiv=document.createElement('span');
+                        subdiv.classList.add("col-5");
+                        subdiv.appendChild(radioInput);
+                        subdiv.appendChild(l2);
+                        d.appendChild(subdiv);
+                        d.appendChild(l3);
+                        d.appendChild(l4);
+                        opdiv.appendChild(d);
+                    }
+                }
+            }
+            //totfield.value=total;
+            
+        }
+
+        function update_association(a){
+            cur_association=a[a.selectedIndex].value;
+            alert(cur_association);
+        }
+        function listbacks(obj) {
+            blabel=document.getElementById('bckloglabel');
+            blist=document.getElementById('bckloglist');
+            bheader=document.getElementById('bcklogsubheader');
+            if(obj.checked==1){
+            alert("CHECKED");
+              
+              blabel.style.display='initial';
+              blist.style.display='initial';
+              bheader.style.display='initial';
+              
+            }else{
+
+              alert("Not checked"); //when not checked
+              blabel.style.display='none';
+              blist.style.display='none';
+              bheader.style.display='none';
+            }
+            
+          }
+
+          function backlist(sList){
+            sList.options[sList.selectedIndex].disabled=true;
+            var bdiv=document.getElementById('backsub');
+            var s=getValue("sem");
+            var bs=getValue("bsem");
+            if(bs<s){
+                console.log(bs);
+                var c=getValue("course");
+                for (let i=0; i<backdata.length;i++){
+                if(backdata[i].course==c && backdata[i].sem==bs){
+                    console.log(backdata[i]);
+                    var d =document.createElement('div');
+                    d.classList.add("form-group","row");
+                    var l2=document.createElement('label');
+                    var l3=document.createElement('label');
+                    var l4=document.createElement('label');
+                    l2.classList.add("col-form-label");
+                    l3.classList.add("col-5","col-form-label");
+                    l4.classList.add("col-2","col-form-label");
+                    l2.textContent=backdata[i].sub_code;
+                    l3.textContent=backdata[i].subject;
+                    l4.textContent=backdata[i].fee;
+                    var checkInput = document.createElement('input');
+                    checkInput.setAttribute('type', 'checkbox');
+                    checkInput.setAttribute('name', 'backs');
+                    checkInput.setAttribute('value',i);
+                    checkInput.setAttribute('onchange',"addbck(this)");
+                    checkInput.classList.add("form-check-input","mr-2","bcksub")
+                    var subdiv=document.createElement('span');
+                    subdiv.classList.add("col-5");
+                    subdiv.appendChild(checkInput);
+                    subdiv.appendChild(l2);
+                    d.appendChild(subdiv);
+                    d.appendChild(l3);
+                    d.appendChild(l4);
+                    bdiv.appendChild(d);
+                    
+                }
+            }
+
+            }
+            else{
+                sList.selectedIndex=0;
+                alert("You are only allowed to write previous semester's backlogs!!")
+            }
+            
+          }
+          /**$('#optionals').load(function () {
+            $('.opt').click(function() {
+                      var index=this.value;
+                      alert(index);         
+              });
+          });**/
+          function addsub(rad){
+            found=false;
+            let pos;
+            //total=total-opsub;
+            index=parseInt(rad.value);
+            console.log(index);
+            opsub=(backdata[index].fee);
+            //total=total+opsub;
+            //totfield.value=total;
+            opsublist=backdata[index];
+            l=selected_sub.length;
+
+            for(let i=0; i<l; i++)
+             {
+                if(selected_sub[i].optional==true){
+                    console.log("true");
+                    found=true;
+                    pos=i;
+                    break;
+                }
+            }
+            if(found==true){
+                selected_sub.splice(pos, pos, opsublist);
+            }
+            else{
+                selected_sub.push(opsublist);
+            }
+            /*i=data.indexOf(opsublist);
+            opsublist=data[index];
+            selected_sub.push(opsublist);*/
+           
+            
+          }
+          
+          function addbck(bck){
+            let i=parseInt(bck.value);
+            console.log(i);
+            let length=selected_sub.length;
+              if(bck.checked==true){
+                for(let index=0;index<length;index++)
+                {
+                    if(selected_sub[index]==backdata[i])
+                    {
+                        print("true");
+                      selected_sub.splice(index,index);
+                    }
+                }
+                  //total=total+data[i].fee;
+                  selected_sub.push(backdata[i]);
+              }
+              else{
+                  //total=data[i].fee;
+                  
+                  for(let index=0;index<length;index++)
+                  {
+                      if(selected_sub[index]==data[i])
+                      {
+                        selected_sub.splice(index,index);
+                      }
+                  }
+                  
+              }
+              
+              console.log(selected_sub);
+          }
+          function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+          function sendsub(){
+            var total=0;
+              for(let index=0;index<selected_sub.length;index++){
+                    total=total+selected_sub[index].fee;
+                    
+              }
+        
+                 alert(total);
+                 //var csrftoken = getCookie('csrftoken');
+                 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                 console.log(csrftoken);
+                 $.ajax({
+                    type: "POST",
+                    url: "{{'ajax-test-view'}}",
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    },
+                    data: {
+                        'name':$('#name').val(),
+                        'emailid':$('#emailid').val(),
+                        'regNo':$('#regNo').val(),
+                        'clgCode':$('#clgCode').val(),
+                        'roll-no':$('#roll-no').val(),
+                        'course':$('#course').val(),
+                        'sem':$('#sem').val(),
+                        'monthyear':$('#month').val(),
+                        'sub': JSON.stringify(selected_sub),
+                        'col_code':$('#clgCode').val(),
+                        'assoc':cur_association,
+                    },
+                    success: function(result) {
+                        window.location.href="exform"
+                        alert('Data Has been saved')
+                    }
+                 });
+                 console.log(selected_sub);
+                 /*const request = new Request(
+                           "{{'ajax-test-view'}}",
+                            {headers: {'X-CSRFToken': csrftoken}}
+                            );
+                fetch(request, {
+                             method: 'POST',
+                             mode: 'same-origin', 
+                             dataType:'JSON',// Do not send CSRF token to another domain.
+                             data:{'sub':JSON.stringify(selected_sub)}
+                            
+                }).then(function(response) {
+                    console.log(response);
+                    });*/
+          }
+          
+    </script>
+</body>
+</html>

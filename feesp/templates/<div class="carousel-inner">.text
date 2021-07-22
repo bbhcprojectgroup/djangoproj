@@ -1,0 +1,69 @@
+<div class="carousel-inner">
+                 
+    <div class="carousel-item active" style="background-image: url(../static/images/1.jpg);">
+      <div class="container">
+        
+        <section id="welcome">
+          <div class="container">
+            <div data-wow-iteration="3" class="welcome text-center wow " id="wel1">
+              <h1>Welcome to Dr B B Hegde First Grade College</h1>
+              <h2> Fees Payment Portal</h2>
+              <p>Pay academic fees and Semester examination fees online.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+    <div class="carousel-item" style="background-image: url(../static/images/2.jpg);">
+      <div class="container">
+        <section id="welcome">
+          <div class="container">
+            <div data-wow-iteration="3" class="welcome text-center wow " id="wel2">
+              <h2 >Moulding The Future Generation For A Better Future</h2>
+            <p> Dr. B.B.Hegde First Grade College, Kundapura, affiliated to the Mangalore University, 
+            was established in the year 2010 under the aegis of Coondapur Education Society (R.) 
+            with a desire to provide quality degree education for building the future generation 
+            for a better tomorrow.With the dynamic leadership of the President of the Coondapur 
+            Education Society (R), Sri B.M.Sukumar Shetty and the constant support and encouragement 
+            of the managing committee and the governing council. <emp>The college could carve a niche for 
+            itself among the renowned institutions affiliated to the Mangalore University.</emp>
+            </p>
+            </div>
+          </div>
+        </section>   
+      </div>
+    </div>
+    
+    <div class="carousel-item" style="background-image: url(../static/images/3.jpg);">
+      <div class="container">
+        <section id="welcome">
+          <div class="container">
+            <div data-wow-iteration="3" class="welcome text-center wow " id="wel2">
+              <h2>The President's Message</h2>
+                <p>I am very happy to be associated with the Educational institutions. I consider education is an ennobling 
+                  process of growth. Motivate the weak and address the average is the underlying principle of our institutions.
+                  We strive to empower,embolden and support the weak and thr deprived in their aspirations and pursuits. <em>I am
+                  indeed facinated to work for this noble cause as i feel the duty of life fulfilled here. I welcome all the 
+                  students joining our institution on a facinating journey of self-discovrey- and development.</em><br>
+                  <em>May Goddess Mookambika shower her blessings on us all..</em> <br><br>
+                  With Regards<br>
+                  Sri B. M. Sukumar Shetty<br>
+                  </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    
+  </div>
+  <a class="carousel-control-prev"  role="button" href="#carousel" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </a>
+  <a class="carousel-control-next" role="button" href="#carousel" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden"></span>
+  </a>
+</div>
+</div>
