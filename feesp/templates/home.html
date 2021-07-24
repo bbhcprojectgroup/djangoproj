@@ -29,7 +29,7 @@
               <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item active">
-                  <a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#" style="text-decoration: underline;"><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="/index"><span class="fa fa-info fa-lg"></span>ABOUT US</a>
@@ -42,7 +42,7 @@
                 </span>
                 {% else %}
                 <li class="nav-item active">
-                  <a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="#"  style="text-decoration: underline;"><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="/index"><span class="fa fa-info fa-lg"></span>ABOUT US</a>
@@ -51,7 +51,7 @@
                   <a class="nav-link" href="/feedback"><span class="fa fa-pen-square fa-lg mr-1"></span>FEEDBACK</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="/register"><span class="fas fa-sign-in-alt"></span>STUDENT LOGIN</a>
+                  <a class="nav-link" href="/register" ><span class="fas fa-sign-in-alt"></span>STUDENT LOGIN</a>
                 </li>
                 {% endif %}
               </ul>
@@ -153,7 +153,7 @@
             
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
-                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button class="btn btn-link acc_header" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     B M Sukumar Shetty(PRESIDENT)
                   </button>
                 </h5>
@@ -180,7 +180,7 @@
             <div class="card" id="frame2">
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <button class="btn btn-link collapsed acc_header" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     Prof Umesh Shetty (PRINCIPAL)
                   </button>
                 </h5>
@@ -204,7 +204,7 @@
             <div class="card"  id="frame3">
               <div class="card-header" id="headingThree">
                 <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <button class="btn btn-link collapsed acc_header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     Chethan Shetty (VICE-PRINCIPAL)
                   </button>
                 </h5>
@@ -235,48 +235,43 @@
         <div class="container">
           <div class="row">
             <div class="col-md-6 text-center wow fadeInLeft">
-              <img src="{% static 'images/6.jpg' %}" width="300" height="300" class="img-fluid">
+              <img src="{% static 'images/academicfee.jpg' %}" width="300" height="300" class="img-fluid">
             </div>
             <div class="col-md-6 text-justify pay wow fadeInRight" id="border">
               {% if user.is_authenticated %}
               <h3><u>Academic Fees Payment</u></h3>
-              <p><b>In this Fees Payment it provides Academic Fees Form, to filling this form you can make payment and also provides the Academic fees details like amount 
-                 is mentioned for each course and if you are not fresher instead of 2nd year or 3rd year student you need not take headache that Academic year fees amount 
-                 also visible.It helps you to Pay your fees sitting at home online and get the receipt of the same. Download or print the receipt for future usage.<br>
+              <p><b>In this Fees Payment system user is provided Academic Fees Form, by filling this form details, user can make payment and also gain the Academic fees details like amount for 
+                 each course. User can pay the fees any time from anywhere.When fees payment is done, an email will be sent to registered mail Id. It helps you to Pay your fees sitting at home online and get the receipt of the same. Download or print the receipt for future usage.<br>
                <span style="color: red;">**Installments are available</span></p>
                <button type="button" class="btn acad-btn">Pay Academic Fees</button>
               </b></p>
               {% else %}
               <h3><u>Academic Fees Payment</u></h3>
-              <p><b>In this Fees Payment it provides Academic Fees Form, to filling this form you can make payment and also provides the Academic fees details like amount 
-                 is mentioned for each course and if you are not fresher instead of 2nd year or 3rd year student you need not take headache that Academic year fees amount 
-                 also visible.It helps you to Pay your fees sitting at home online and get the receipt of the same. Download or print the receipt for future usage.
-                "You can able to pay the academic fees only after you are registered to this site."<br>
+              <p><b>In this Fees Payment system user is provided Academic Fees Form, by filling this form details, user can make payment and also gain the Academic fees details like amount for 
+                each course. User can pay the fees any time from anywhere.When fees payment is done, an email will be sent to registered mail Id. It helps you to Pay your fees sitting at home online and get the receipt of the same. Download or print the receipt for future usage.
+                "You can able to pay the academic fees only after you are logged in to this site."<br>
                <span style="color: red;">**Installments are available</span></b></p>
               {% endif %}
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 text-center order-md-last wow fadeInRight" >
-              <img src="{% static 'images/examfee.jpeg' %}" class="img-fluid">
+              <img src="{% static 'images/examfee.jpg' %}" height="300" width="300" class="img-fluid">
             </div>
             <div class="col-md-6 order-md-first text-justify pay wow fadeInLeft" id="border">
               {% if user.is_authenticated %}
               <h3><u>Examination Fees Payment</u></h3>
-              <p><b>In the Examination Fees Payment it provides the one Exam Fees Form, to filling this form and make a payment. In the earliar days you can get the fees form 
-                from the college So,if you are using this portal you need not take headache for form, when you are filling we provided Exam fees form that is redirect to the college 
-                provided Examination Fees Form. It also provides the Exam fees details like amount is mentioned for each subjects and also backlog subjects So, getting this details Pay your 
-                current semester fees. Select the subjects for which you want to attend exam. Do print the receipt and filled Examination Form.
-                <br><span style="color: red;">**Note that :</span> The filled Examination form must be submitted to college later.<br>
+              <p><b>In the Examination Fees Payment section, Exam Fees Form is provided. Do fill it carefully entering all the necessary details accurately. In the traditonal system students had to  get the exam-fees form 
+                from the college. So,if you are using this portal you need not take headache for form. It also provides the Exam fees details like amount for each subject of current semester. There is provision to apply for backlog subjects also. While filling the form ensure that you select all the subjects for which you want to attend exam. Do print the receipt and filled Examination Form.
+  
               </b></p>
                <a href="/payexam"><button type="button" class="btn acad-btn">Pay Examination Fees</button></a>
               </p>
               {% else %}
               <h3><u><b>Examination Fees Payment</u></h3>
-              <p>In the Examination Fees Payment it provides the one Exam Fees Form, to filling this form and make a payment. In the earliar days you can get the fees form 
-                from the college So,if you are using this portal you need not take headache for form, when you are filling we provided Exam fees form that is redirect to the college 
-                provided Examination Fees Form. It also provides the Exam fees details like amount is mentioned for each subjects and also backlog subjects  So, getting this details Pay your 
-                current semester fees. Select the subjects for which you want to attend exam. Do print the receipt and filled Examination Form. "You can pay the exmination fees only after registerd to this site."
+              <p>In the Examination Fees Payment section, Exam Fees Form is provided. Do fill it carefully entering all the necessary details accurately. In the traditonal system students had to  get the exam-fees form 
+                from the college. So,if you are using this portal you need not take headache for form. It also provides the Exam fees details like amount for each subject of current semester. There is provision to apply for backlog subjects also. While filling the form ensure that you select all the subjects for which you want to attend exam. Do print the receipt and filled Examination Form.
+               "You can pay the exmination fees only after registerd to this site."
                 <br><span style="color: red;">**Note that :</span> The filled Examination form must be submitted to college later.<br>
               </b></p>
               {% endif %}
@@ -297,7 +292,7 @@
                    Kundapura, Udupi Dist,
                    Karnataka-576201<br>
                       <i class="fa fa-phone fa-lg"></i>: 08254-235589<br>
-                      <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link">bbhegdecollegekundapur@rediffmail.com</a>
+                      <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link" style="color: aliceblue;">bbhegdecollegekundapur@rediffmail.com</a>
                    </address>
                 </div>
                 <div class="col-12 col-sm-6 align-self-center">

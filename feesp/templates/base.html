@@ -36,7 +36,7 @@
                         </div>
                         <div class="input-box">
                             <em class="fas fa-lock"></em>
-                            <input title="Password must contain at least 6 characters, including UPPER/lowercase and numbers" id="password" class="passcode" name="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="PASSWORD" required>
+                            <input title="Password must contain at least 8 characters, including UPPER/lowercase and numbers" id="password" class="passcode" name="password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onchange="this.setCustomValidity(this.validity.patternMismatch ? this.title : ''); if(this.checkValidity()) form.password_two.pattern = this.value;" placeholder="PASSWORD" required>
 
                         </div>
                         <div class="input-box">

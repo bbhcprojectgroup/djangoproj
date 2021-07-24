@@ -30,10 +30,10 @@ def exform(request):
         
         return render(request,'examform.html',pass_sem)
     else:
-        return render(request,'home.html')
+        return render(request,'error.html')
 
 
-def savestud(request):
+"""def savestud(request):
     if(request.method=='POST'):
         expaid=examfeepaid()
         expaid.email=request.POST['emailid']
@@ -46,7 +46,7 @@ def savestud(request):
         expaid.save()
         return render(request,'home.html')
 
-expaid=examfeepaid()
+expaid=examfeepaid()"""
 
 def myajaxtestview(request):
         

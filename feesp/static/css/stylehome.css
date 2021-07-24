@@ -64,12 +64,16 @@ nav .fa-bars
 }
 /********************info***************************/
 .background{
-	background-image: url(../images/4.jpg);
+	background-color: rgb(255,228,181,0.3);
     height: 200vh;
     background-size: cover;
     background-position: center;
 	
 	
+}
+.acc_header{
+	color: firebrick;
+	font-weight: bold;
 }
 
 /*--------------Info-----------*/
