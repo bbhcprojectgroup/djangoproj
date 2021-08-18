@@ -15,7 +15,15 @@
 <body>
 
     <!-----------The LOGIN CONTENT----------------------------------------------------------------------------------------->
-    <div class="containers">
+    <div id="mainx" class="containers">
+        <div class="content" style="color: antiquewhite; z-index:10;">
+            <p id="logtext">
+                Hiiii!!<br> Login to pay your fee<br>
+                💸
+            </p>
+
+
+        </div>
         <div class="card">
             <div class="inner-box" id="card">
                 <div class="card-front">
@@ -45,14 +53,16 @@
                         </div>
                         <button type="submit" class="submit-btn">Submit</button>
                         <input type="checkbox" id="regcheck" onclick="passVisible1()" ><span>Show Password</span>
+                        <button type="button" class="btn-flip" onclick="openLogin()">I have an Account</button>
                     </form>
-                <button type="button" class="btn-flip" onclick="openLogin()">I have an Account</button>
+                
                 
                 {% csrf_token %}
                 
            
                 
                 </div>
+               
                 <div class="card-back">
                     <h2>LOGIN</h2>
                     <form action="log_in" method="POST">
@@ -67,16 +77,27 @@
                        </div>  
                         <button type="submit" class="submit-btn">Submit</button>
                         <input type="checkbox" id="logcheck" onclick="passVisible()" ><span>Show Password</span>
+                        <button type="button" class="btn-flip" onclick="openRegister()">I'm new here</button>
+                        <a href="/password_reset">Forgot Password</a>
                     </form>
                     
-                    <button type="button" class="btn-flip" onclick="openRegister()">I'm new here</button>
-                    <a href="/password_reset">Forgot Password</a>
+                   
                     {% csrf_token %}
                 
                     </div>
+                    <img src="{% static 'images/loginn.gif' %}" id="indv-ppt" alt="Error" data-original="{% static 'images/register.gif' %}" data-one="{% static 'images/loginn.gif' %}" style="float: right;">
+                    
               
             </div>
         </div>
+        <div class="content" style="color: antiquewhite; z-index:10;">
+            <p id="regtext">
+                Welcome to <br>
+                FeePay Registration Portal<br> 😇
+
+            </p>
+        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

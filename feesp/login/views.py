@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
 from login.models import Account
 from django.utils import timezone
-
+from django.template import RequestContext
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.forms import PasswordResetForm
 from django.template.loader import render_to_string
@@ -19,11 +19,21 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request,'home.html')
 
+def handler404(request, *args, **argv):
+    response = render(request,'404.html', {})
+    response.status_code = 404
+    return response
+
+
+def handler500(request, *args, **argv):
+    response = render(request,'500.html', {})
+    response.status_code = 500
+    return response
+
 """def feedback(request):
     return render(request,'feedback.html')"""
 
-def about_us(request):
-    return render(request,'about.html')
+
 
 @requires_csrf_token   
 def register(request):
@@ -70,6 +80,9 @@ def log_in(request):
 
 
 
+def about_us(request):
+    return render(request,'about.html')
+
 
 @requires_csrf_token   
 def password_reset_request(request):
@@ -93,7 +106,8 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'feepayportal@gmail.com' , ['kdevadiga74@gmail.com'], fail_silently=False)
+                       
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")

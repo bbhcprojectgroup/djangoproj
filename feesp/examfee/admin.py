@@ -1,9 +1,9 @@
 from django.contrib import admin
 from examfee.models import sublist,examfeepaid, site_settings, association
-from login.admin import ac_site
+from login.admin import ac_site,DontLog
 # Register your models here.
 
-class examfeepaidAdmin(admin.ModelAdmin):
+class examfeepaidAdmin(DontLog,admin.ModelAdmin):
     list_display=('roll_no','amount_paid')
 
     def has_add_permission(self, request):

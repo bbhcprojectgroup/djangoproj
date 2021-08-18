@@ -76,6 +76,7 @@
                                 <option>BCom</option>
                                 <option>BCA</option>
                                 <option>BSc</option>
+                                <option>BBA</option>
                         
                             </select>
                          </div>
@@ -170,7 +171,7 @@
         var totfield=document.getElementById('tfee');
         var backdata=JSON.parse('{{listsub|escapejs}}');
         function getValue(passid){
-            var semester=document.getElementById(passid)
+            var semester=document.getElementById(passid);
             var s=semester.options[semester.selectedIndex].value;
             return s;
         }
@@ -228,7 +229,7 @@
                         pdiv.appendChild(d);
                        // total=total+data[i].fee;
                        console.log(selected_sub);
-                        selected_sub.push(backdata[i]);
+                       selected_sub.push(backdata[i]);
                     }
                     else{
                         var radioInput = document.createElement('input');

@@ -15,17 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url
 from login.admin import ac_site
 from feedbck.admin import ac_site
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from examfee import views as eview
-
+from django.views.static import serve
 
 
 logurl='login.urls'
+handler404 = 'login.views.handler404'
+handler500 = 'login.views.handler500'
 
 urlpatterns = [
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
     path('',include(logurl)),
     path('admin/', ac_site.urls),
     path('register',include(logurl)),
@@ -36,11 +43,12 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),
     path('log_out', include(logurl)), 
     path('payexam',include('examfee.urls')),
-    path('savestud',eview.savestud,name="savestud"),
+    #path('savestud',eview.savestud,name="savestud"),
     path('exform',eview.exprintform,name="exprintform"), 
     path('homepage',TemplateView.as_view(template_name='home.html')),
     path('ajax-test-view', eview.myajaxtestview, name='myajaxtestview'),
-
-
-    path('feedback',include('feedbck.urls')),    
-]
+    path('feedback',include('feedbck.urls')),   
+    #url(r'^download_file/(?P<file_id>\d+)/?', eview.download_file, name='myapp_download_file') 
+    path('download/',eview.download_file,name="download_file"),
+    path('save_sign',eview.save_sign,name="save_sign")
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

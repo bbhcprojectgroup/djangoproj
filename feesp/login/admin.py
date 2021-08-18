@@ -6,11 +6,19 @@ from login.models import Account
 
 # Register your models here.
 
+class DontLog:
+    def log_addition(self, *args):
+        return
+    def log_change(self, *args):
+        return
+    def log_deletion(self, *args):
+        return
+
 class accAdmin(admin.AdminSite):
-    site_header='Admin Area'
+    pass
 
 
-class AccntAdmin(admin.ModelAdmin):
+class AccntAdmin(DontLog,admin.ModelAdmin):
     list_display=('email','username','phone','is_active')
 
 

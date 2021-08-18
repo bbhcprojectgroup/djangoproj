@@ -2,10 +2,10 @@
 # Register your models here.
 from django.contrib import admin
 from feedbck.models import FeedBack
-from login.admin import ac_site
+from login.admin import ac_site, DontLog
 
 # Register your models here.
-class FeedbkAdmin(admin.ModelAdmin):
+class FeedbkAdmin(DontLog,admin.ModelAdmin):
     list_display=('firstname','email','phone','feedback')
     
     def has_add_permission(self, request):
