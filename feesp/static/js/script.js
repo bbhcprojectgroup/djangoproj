@@ -9,8 +9,8 @@ function openLogin(){
     card.style.transform = "rotateY(-180deg)";
     mn.classList.remove("excontainers");
     mn.classList.add("containers");
-    cnt1.style.transform="translate(220%,-200%)";
-    cnt2.style.transform="translate(-2000%,5000%)";   
+    cnt1.style.transform="translate(300%,-200%)";
+    cnt2.style.transform="translate(-2200%,5000%)";   
    /* var src = element.getAttribute("data-one");
     element.setAttribute("src", src); */
 }
@@ -18,7 +18,7 @@ function openRegister(){
    
     card.style.transform = "rotateY(0deg)";
     cnt1.style.transform="translate(2000%,-5000%)";
-    cnt2.style.transform="translate(-260%,120%)";
+    cnt2.style.transform="translate(-330%,150%)";
     mn.classList.remove("containers");
     mn.classList.add("excontainers");
     /*var src = element.getAttribute("data-original");
@@ -56,5 +56,3 @@ function passVisible1() {
       pass2.setAttribute(ValidityState,true);
     }
   }
-
-  

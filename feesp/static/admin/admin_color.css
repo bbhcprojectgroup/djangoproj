@@ -16,6 +16,10 @@ h1{
 
 }
 
+.submit-row{
+    background: transparent!important;
+    border: none!important;
+}
  
 
 body{

@@ -33,8 +33,8 @@ class examfeepaid(models.Model):
     sem=models.IntegerField(default=1,
         validators=[MaxValueValidator(6), MinValueValidator(1)])
     amount_paid= models.DecimalField(max_digits=10, decimal_places=2)
-    form_image=models.ImageField(upload_to='examForms/',height_field='picture_height',width_field='picture_width',max_length=255, null=True, blank=True)
-    receipt_image=models.ImageField(upload_to='examReceipts/',height_field='picture_height',width_field='picture_width',max_length=255,null=True,blank=True)
+    form_image=models.FileField(upload_to='examForms/', blank=True)
+    receipt_image=models.FileField(upload_to='examReceipts/',null=True,blank=True)
     date_of_fee=models.DateTimeField(default=timezone.now)
     month=models.CharField(max_length=10,blank=True)
     college_code=models.CharField(max_length=10,blank=True)

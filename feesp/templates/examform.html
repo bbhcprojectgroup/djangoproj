@@ -22,9 +22,14 @@
 
 <body onload="sublist()" >
     <header class="fixed-top form-head">
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.jpg' %}" alt="logo" height="60" width="61" class="ml-2">
+            <span style="color: goldenrod;">FEEPAY</span>
         <a href="/homepage" style=" color:floralwhite;
         background-color: transparent;
         text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
+        </div>
+        
     </header>
     
     <div class="container exam-form">
@@ -102,7 +107,7 @@
                    <div class="form-group row" id="assoc_row">
                     <label id="alabel" for="association" class="col-md-3 col-form-label">Select association</label>
                          
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                        <select class="form-control" id="association" onchange="update_association(this)" name="association">
                            <option style="background-color: grey;">Select your association</option>
                            {% for i in associations %}

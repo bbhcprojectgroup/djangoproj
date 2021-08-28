@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js"
+         crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="{% static 'css/clg.css' %}">
+    <title>College Academic Fees</title>
+
+</head>
+{% if msg == "notpaid" %}
+<body onload="yrrlist()">
+{% else %}
+<body>
+{% endif %}
+
+    <header class="fixed-top form-head">
+        <a href="/homepage" style=" color:floralwhite;
+        background-color: transparent;
+        text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
+    </header>
+
+    <div class="clgname">
+        <h1>Dr BB Hegde First grade college Kundapur</h1>
+    </div>
+    <div class="logo col-6">
+        <img src="{% static 'images/bbhlogo.jpeg' %}" class="img-fluid" alt="‪">
+    </div>
+    {% if msg == "halfpaid" or msg == "notpaid" %}
+    
+    <div class="acadform">
+        
+ 
+             <form action="pay/" method="post">
+                {% csrf_token %}
+                 <div class="form-group row">
+                    <label for="name" class="col-md-3 col-form-label">Student's Name:</label>
+                         <div class="col-md-9">
+                             <input required type="text" class="form-control" id="name" name="name" value="{{user.name}}" placeholder="As Registered in college">
+                         </div>
+                 </div>
+    
+    
+                  <div class="form-group row">
+                    <label for="emailid" class="col-md-3 col-form-label">Email Id:</label>
+                    <div class="col-md-9">
+                        <input type="email" required class="form-control" name="emailid" value="{{user.email}}" id="emailid" placeholder="Email">
+                    </div>
+                 </div>
+                 
+                 <div class="form-group row">
+                    <label for="roll-no" class="col-md-3 col-form-label">Roll No:</label>
+                    <div class="col-md-3">
+                       <input required type="text" class="form-control" id="roll-no" name="roll-no" placeholder="Roll Number" value="{{user.roll_no}}">
+                   </div>
+                 </div>
+                   {% if msg == 'notpaid' %}
+                   <div class="form-group row">
+                    <label for="course" class="col-md-3 col-form-label">Course:</label>
+                    <div class="col-md-3">
+                       <select class="form-control" name="course" id="course" onchange="yrrlist()">
+                           <option>BCA</option>
+                           <option>BCom</option>
+                           <option>BSc</option>
+                           <option>BBA</option>
+                       </select>
+                    </div>
+                    
+                </div>
+                <div class="form-group row">
+                    <label for="year" class="col-md-3 col-form-label">Year:</label>
+                    <div class="col-md-3">
+                       <select class="form-control" name="year" id="year" onchange="yrrlist()">
+                           <option>1</option>
+                           <option>2</option>
+                           <option>3</option>
+                  
+                        </select>
+                    </div>
+                    <label for="fees" class="col-md-3 col-form-label">Fees:</label>
+                    <div id="fees">
+                    </div>
+                </div>
+                
+                <div class="row" id="instalist">
+                    <div class="form-group col-md-5">
+                        
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input"
+                            name="instament" id="instament" value="" onchange="listinstallment(this)">
+                            <label class="form-check-label" for="approve">
+                                <strong> Pay in installments?
+                                </strong>
+
+                            </label>
+                            
+                    </div>
+                
+                </div>
+                
+                <div class="form-group col-md-4" style="display: none;" id="installmtlist">
+                    <label id="instalment">
+
+                      installment 
+
+                    </label>
+
+                </div>
+                
+               </div>
+               {% else %}
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <div class="2instament">
+                                <input type="checkbox" class="form-check-input ml-2"
+                            name="instamenttwo" id="instamenttwo" value="" onchange="listhinstallment(this)">
+                            <label class="form-check-label ml-4" for="approve">Pay second installment</label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6" id="cylabel" style="display: none;">
+                            <label>Course:</label>
+                            <input type="text" id="course" name="course" value="{{user.course}}">
+                        </div>
+                        <div class="form-group col-md-6" id="cy" style="display: none;">
+                            <label>Year:</label>
+                            <input type="text" id="year" name="year" value="{{user.year}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label style="display: none;" for="hfee" id="hfeelabel" class="col-md-3 col-form-label">Fees:</label>
+                        <div>
+                        </div>
+                            <input type="text" name="amt" id="amt" style="display: none;" value="{{user.amount_paid}}">
+                        
+                        </div>
+                    
+                {% endif %}
+                <div class="form-group col-md-4">
+                    <input type="text" id="half" name="half" style="display: none;">
+
+                </div>
+             <div class="form-group row">
+                 <div class="offset-md-2 col-md-10">
+                     <button type="submit" class="btn btn-primary">
+                         Pay
+                     </button>
+                 </div>
+             </div>
+             {% csrf_token %}
+             </form>
+        
+          <div class="col-12 col-md">
+         </div>
+</div>
+{% else %}
+    <p>you have paid fee</p>
+{% endif %}
+<script
+ src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"> 
+</script>
+<script>
+    var selected_year=0;
+    var back_data=JSON.parse('{{listyear|escapejs}}');
+    function getValue(pasid){
+            var yr=document.getElementById(pasid);
+            var y=yr.options[yr.selectedIndex].value;
+            return y;
+    }
+    function yrrlist(){
+
+            selected_year=0;
+            console.log(selected_year);
+            var pydiv=document.getElementById('fees');
+            pydiv.innerHTML="";
+            var y=getValue("year");
+            console.log(y);
+            
+
+            var c=getValue("course");
+            console.log(c);
+            for (let i=0; i<back_data.length;i++){
+                if(back_data[i].course.toUpperCase()==c.toUpperCase() && back_data[i].year==y){
+
+                    console.log(back_data[i]);
+                    var d =document.createElement('div');
+                    d.classList.add("form-group","row");
+                    var l1=document.createElement('input');
+                    l1.setAttribute("type","text");
+                    l1.setAttribute("name","amt");
+                    l1.setAttribute("id","amt");
+                    l1.classList.add("col-12","col-form-label");
+                    l1.value=back_data[i].fee;
+                    d.appendChild(l1);
+                    pydiv.appendChild(d);
+                        
+                    console.log(selected_year);
+                    selected_year=back_data[i].fee;
+                
+                }
+            }
+    }
+
+    function listinstallment(obj){
+        var ilabel=document.getElementById('installmtlabel');
+        var ilist=document.getElementById('installmtlist');
+        var h=document.getElementById('half');
+
+        if(obj.checked==1){
+        alert("CHECKED");
+           
+            h.value="half";
+            ilist.style.display="initial";
+            installlist()
+
+        } else{
+            alert("not checked");
+            h.value="";
+            ilist.style.display="none";
+            iheader.style.display="none";
+         }
+    }
+    function listhinstallment(obj){
+        var clabel=document.getElementById("cylabel");
+        var cy=document.getElementById("cy");
+        var hfee=document.getElementById("amt");
+        var hfeelbl=document.getElementById("hfeelabel");
+        var h=document.getElementById('half');
+        if(obj.checked==1){
+            h.value="half";
+            clabel.style.display="initial";
+            cy.style.display="initial";
+            hfee.style.display="initial";
+            hfeelbl.style.display="initial";
+
+        }
+        else{
+            h.value=" ";
+            clabel.style.display="none";
+            cy.style.display="none";
+            hfee.style.display="none";
+            hfeelbl.style.display="none";
+        }
+
+    }
+     function installlist(){
+         selected_year=0;
+         console.log(selected_year);
+
+         var pydiv=document.getElementById('fees');
+         pydiv.innerHTML="";
+         var y=getValue("year");
+         console.log(y);
+
+         var c=getValue("course");
+         console.log(c);
+         for(let i=0; i<back_data.length;i++){
+             if(back_data[i].course.toUpperCase()==c.toUpperCase() && back_data[i].year==y){
+                 var fees=back_data[i].fee/2;
+                 console.log(fees);
+                 var d=document.createElement('div');
+                 d.classList.add("form-group","row");
+                 var l1=document.createElement('input');
+                 l1.setAttribute("type","text");
+                 l1.setAttribute("name","amt");
+                 l1.setAttribute("id","amt");
+                 l1.classList.add("col-12","col-form-label");
+                 l1.value=fees;
+                 
+                 
+                 d.appendChild(l1);
+                 pydiv.appendChild(d);
+
+                 console.log(selected_year);
+                 selected_year=back_data[i].fee;
+
+             }
+         }
+     }
+            
+
+
+
+</script>
+</body>
+</html>
+

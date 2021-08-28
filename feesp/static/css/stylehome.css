@@ -34,7 +34,7 @@ nav .fa-bars
 /*-----------Welcome Text----------------*/
 .welcome{
 	
-    padding:100px 100px;
+
     margin-top:1%;
     box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
     background:rgba(0,0,0,0.5);
@@ -65,7 +65,6 @@ nav .fa-bars
 /********************info***************************/
 .background{
 	background-color: rgb(255,228,181,0.3);
-    height: 200vh;
     background-size: cover;
     background-position: center;
 	
@@ -222,6 +221,9 @@ textarea{
 }
 
 @media(max-width:450){
+	.welcome{
+		padding: 0px 0px 0px 0px!important;
+	}
 	.about .carousel-item{
 		min-height: 100%;
 	}
@@ -266,8 +268,12 @@ textarea{
 	}
 }
 
-@media (max-width:767px)
+@media (max-width:768px)
 {
+	.about .carousel-control-next .carousel-control-next-icon,
+	.about .carousel-control-prev .carousel-control-prev-icon{
+	display: none!important;
+}
 	/***********carousel*******************/
 	.carousel-item{
 		height: 75vh;
@@ -311,9 +317,7 @@ textarea{
 	}
 	
 	/*-----Accordion-**/
-	section.background{
-		height: 330vh;
-	}
+	
 	
 	/***********carsoul icon*******************/
 	
@@ -331,9 +335,7 @@ textarea{
 		transform: translate(80%,-150px);
 
 	}
-	.background{
-		height: 245vh;
-	}
+
 }
 
 .card-header{
@@ -397,11 +399,7 @@ textarea{
 }
 
 /*********************** Arrow Indication *************************/
-.about .carousel-control-next .carousel-control-next-icon,
-.about .carousel-control-prev .carousel-control-prev-icon{
-	width: 30px;
-    opacity: 1;
-}
+
 .about .carousel-control-next .carousel-control-next-icon{
 	right: -90px;
 }

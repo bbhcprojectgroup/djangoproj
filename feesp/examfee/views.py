@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.utils.timezone import localdate
+import os
+from django.http import FileResponse
 from django.template.loader import get_template
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import site_settings,sublist,examfeepaid,association
 from django.contrib.auth.decorators import login_required
 from json import dumps,loads
@@ -10,6 +14,14 @@ from django.template.loader import render_to_string
 from weasyprint import HTML,CSS
 import tempfile
 from feesp.settings import MEDIA_ROOT
+
+
+
+#for saving pdf
+from django.core.files import File
+from django.core.files.base import ContentFile
+from reportlab.platypus import SimpleDocTemplate
+from io import BytesIO
 
 
 # Create your views here.
@@ -134,30 +146,23 @@ def exprintform(request):
     return HttpResponse("Not found")"""
 
 
+
+
+
+
 def download_file(request):
     print("download")
     context['bton']=False
     context['pdf']=True
     print(context['bton'])
-    html_string = render_to_string('form.html', context, request=request)
-    html = HTML(string=html_string, base_url='request.build_absolute_uri()')
-    result = html.write_pdf(presentational_hints=True)
-
-    # Creating http response
-    response = HttpResponse(content_type='application/pdf;')
-    response['Content-Disposition'] = 'inline; filename=examform.pdf'
-    response['Content-Transfer-Encoding'] = 'UTF-8'
-    print("x")
-    with tempfile.NamedTemporaryFile(delete=True) as output:
-        output.write(result)
-        output.flush()
-        output = open(output.name, 'rb')
-        response.write(output.read())
+    file_name=expaid.register_no+".pdf"
+    response = FileResponse(open(MEDIA_ROOT + "/examForms/" + file_name, 'rb'))   
     return response
 
 
 
 def save_sign(request):
+           print("sign uploaded")
            context['bton']=False
            context['pdf']=False
            sign_image = request.FILES['signature']
@@ -166,8 +171,31 @@ def save_sign(request):
            print("content_type", sign_image.content_type)
            print("size", sign_image.size)
            with open(MEDIA_ROOT + "/" + file_name, 'wb+') as f:
-               for chunk in sign_image.chunks():
-                   f.write(chunk)                 
+                for chunk in sign_image.chunks():
+                        f.write(chunk)                 
            return render(request,'form.html',context)
  
-      
+def data_save(request):
+    if(examfeepaid.objects.filter(email=expaid.email).exists()):
+        print("match found")
+        user = examfeepaid.objects.get(email=expaid.email)
+        user.delete()
+    context['bton']=False
+    context['pdf']=True
+    html_string = render_to_string('form.html', context, request=request)
+    html = HTML(string=html_string, base_url='request.build_absolute_uri()')
+    result = html.write_pdf(presentational_hints=True)
+    # Creating http response
+    """response = HttpResponse(content_type='application/pdf;')
+    response['Content-Disposition'] = 'inline; filename=examform.pdf'
+    response['Content-Transfer-Encoding'] = 'UTF-8'"""
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        #response.write(output.read())
+        expaid.form_image.save(expaid.register_no+".pdf",output)
+        if os.path.exists(MEDIA_ROOT + "/" + expaid.register_no+".png"):
+            os.remove(MEDIA_ROOT + "/" + expaid.register_no+".png")
+    return render(request,'paysuccess.html')    
+   

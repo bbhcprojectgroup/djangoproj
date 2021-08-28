@@ -15,7 +15,8 @@
 <body>
 
     <!-----------The LOGIN CONTENT----------------------------------------------------------------------------------------->
-    <div id="mainx" class="containers">
+    
+        <div id="mainx" class="containers">
         <div class="content" style="color: antiquewhite; z-index:10;">
             <p id="logtext">
                 Hiiii!!<br> Login to pay your fee<br>
@@ -51,7 +52,7 @@
                             <em class="fas fa-lock"></em>
                             <input id="password_two" class="passcode" name="password1" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="CONFIRM PASSWORD" required>
                         </div>
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn" onclick="firstencrypt()">Submit</button>
                         <input type="checkbox" id="regcheck" onclick="passVisible1()" ><span>Show Password</span>
                         <button type="button" class="btn-flip" onclick="openLogin()">I have an Account</button>
                     </form>
@@ -69,7 +70,7 @@
                         {% csrf_token %}
                         <div class="input-box">
                             <em class="fas fa-user"></em>
-                            <input type="text" name="username" placeholder="USER NAME" required>
+                            <input type="text" name="username" placeholder="USER NAME / EMAIL ID" required>
                         </div>
                        <div class="input-box">
                          <em class="fas fa-lock"></em>
@@ -90,7 +91,7 @@
               
             </div>
         </div>
-        <div class="content" style="color: antiquewhite; z-index:10;">
+        <div class="content" style="color: antiquewhite; z-index:6;">
             <p id="regtext">
                 Welcome to <br>
                 FeePay Registration Portal<br> 😇
@@ -99,6 +100,7 @@
         </div>
 
     </div>
+   
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

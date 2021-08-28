@@ -1,0 +1,56 @@
+body{
+    
+
+    background-color: rgb(2, 2, 46);
+   
+    
+
+}
+h1{
+    margin-top: 5%!important;
+}
+.form-head{
+
+    
+    font-style: normal; 
+}
+
+.clgname{
+    top:30%;
+    color: red;
+    font-style: italic;
+    margin-left: 25%;
+    align-content:space-around;
+
+}
+.logo{
+    margin-left: 45%;   
+}
+img{
+    width: 110px;
+    height: 110px;
+}
+.acadform{
+    margin-top: 20px;
+    color: lavender;
+    padding-top:20px;
+    margin: 0px auto;
+    max-width: 80%;
+    background-image:url(../images/clgbg.jpg) ; 
+   
+}
+/*
+.col-12{
+    background-image:url(../images/clgfsbg.jpg) ;   
+}
+.form-group{
+    background-image:url(../images/clgfsbg.jpg) ;      
+}
+label{
+    background-image:url(../images/clgfsbg.jpg) ;   
+
+}
+input{
+    background-image:url(../images/clgfsbg.jpg) ;   
+}*/
+

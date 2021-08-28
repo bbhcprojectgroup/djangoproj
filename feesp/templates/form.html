@@ -1,4 +1,5 @@
 {% load static %}
+{% load  %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Document</title>
+    <style>
+        .btn{
+            width: 100%;
+            border-radius: 50px;
+            margin: auto;
+        }
+        @page {
+            margin-left: -1.5cm;
+        }
+    </style>
 </head>
 <body style="align-items: left;">
     <div style="width: 80%; margin:auto;">
@@ -250,21 +261,22 @@
                                 <td colspan=13><b>I hereby confirm information given by me in this form is true</b></td>
                             </tr>
                             <tr>
-                                <td colspan=13><br><b>Place:</b><br><br><b>Date:</b><br><br>
+                                <td colspan=13><br><b>Place:Kundapura</b><br><br><b>Date:{% now "d/m/Y" %}</b><br><br>
                                     
-                                    
+                                 
                             </tr>
                             <tr>
                                 <td colspan="13" align="right">
                                    <form method="POST" action="save_sign" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    {% if bton == True %} 
-                                    <input style="width: 100px;
+                                    {% if bton == True %}
+                                    <p style="color: red;">1.Choose your signature in jpg,jpeg or png format</p> 
+                                    <input required style="width: 100px;
                                     overflow:hidden;" type="file" name="signature" id="sign"><br>
                                     {% endif %}
-                                    <img id="myImg" src="media/{{ obj.register_no }}.png" alt="your image" height=50 width=250><br> 
+                                    <img id="myImg" src="media/{{ obj.register_no }}.png" alt="your signature" height=50 width=250><br> 
                                     {% if bton == True %} 
-                                    <p style="color: red;">* Upload scanned image of your signature </p>
+                                    <p style="color: red;">2.Upload the above signature</p>
                                     <button style="border-radius: 50px;" type="submit">Upload Signature</button><br>
                                     {% else %}
                                     <b><u>Signature of the Candidate</u></b><br>
@@ -272,7 +284,7 @@
                                     {% csrf_token %}
                                    </form>
                                 </td>
-                            </tr>
+                             </tr>
                            
                         </table>
                     </div>
@@ -281,18 +293,25 @@
             
             
         </div>
-        {% if pdf == False %} 
+        {% if pdf == False and bton == False %} 
         <div class="container" style="margin-bottom: 10%; margin-top:5%">
-            <div class="row">
+           <div class="row">
+               <div class="col-12">
+                <p>Please ensure that the above details are correct, If you want to make changes refill the <a href="payexam">examination form</a> here.</p>
+               </div>
+           </div>
+            <div class="row justify-content-center">
                 <div class="col-4">
-                    <a href="download/"><button class="btn btn-success btn-lg">Download</button></a>
+                    <form method="POST" action="pay/">
+                        {% csrf_token %}
+                        <input style="display: none;" type="text" name="amt" value="{{t}}">
+                        <button type="submit" class="btn btn-warning btn-lg">Proceed to Pay</button>
+                        {% csrf_token %}
+                    </form>
+                    
                 </div>
-                <div class="col-4">
-                    <button class="btn btn-primary btn-lg">Print</button>
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-warning btn-lg">Pay</button>
-                </div>
+            </div>
+                
             </div>
         </div>
         {% endif %}

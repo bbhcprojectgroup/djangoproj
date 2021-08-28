@@ -23,6 +23,9 @@ from feedbck.admin import ac_site
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from examfee import views as eview
+from login import views as lview
+from acdfee import views as aview
+from payment import views as pview
 from django.views.static import serve
 
 
@@ -39,7 +42,7 @@ urlpatterns = [
     path('log_in', include(logurl)),
     path('index',include(logurl)),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password/password_reset_done.html'), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/<uidb64>/<token>/', lview.customPasswordResetConfirmView.as_view(template_name="password/password_reset_confirm.html"), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password/password_reset_complete.html'), name='password_reset_complete'),
     path('log_out', include(logurl)), 
     path('payexam',include('examfee.urls')),
@@ -50,5 +53,17 @@ urlpatterns = [
     path('feedback',include('feedbck.urls')),   
     #url(r'^download_file/(?P<file_id>\d+)/?', eview.download_file, name='myapp_download_file') 
     path('download/',eview.download_file,name="download_file"),
-    path('save_sign',eview.save_sign,name="save_sign")
+    path('filldata',eview.data_save,name="data_save"),
+    path('save_sign',eview.save_sign,name="save_sign"),
+    path('paysuccess',TemplateView.as_view(template_name='btn.html')),
+    path('saveacad',aview.saveacad,name='saveacad'),
+
+    path('clgform',aview.clgform,name='clgform'),
+    path('clgfee',aview.clgfee,name='clgfee'),
+
+
+
+
+    path('pay/', pview.initiate_payment, name='pay'),
+    path('callback/',pview.callback, name='callback'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

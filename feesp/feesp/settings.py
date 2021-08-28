@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ppky6eklz$7m*64p$@3-x^tosf#3lxw*5xshy30w5v*c-8ywrp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 #TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'login',
     'examfee',
-    'feedbck'
+    'feedbck',
+    'acdfee',
+    'payment',
 ]
 
 
@@ -118,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
-
 USE_I18N = True
 
 USE_L10N = True
@@ -129,11 +130,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-"""STATIC_URL = '/static/'
-STATICFILES_DIRS=[os.path.join(BASE_DIR,'./static/')]
 
-MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR, "media")"""
 
 STATIC_URL = '/static/'
 
@@ -156,6 +153,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+
+
+#email settings
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL='login.Account'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -166,5 +167,16 @@ EMAIL_HOST_USER='feepayportal@gmail.com'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 EMAIL_HOST_PASSWORD='6362037635'
+
+
+#payment
+PAYTM_MERCHANT_ID = 'Ztanbx42738781439498'
+PAYTM_SECRET_KEY = 'HERn7FFw%QXSzw@v'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'
+
+
+
 
 

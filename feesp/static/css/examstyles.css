@@ -14,10 +14,10 @@ body{
 }
 .exam-form{
     
-    background:rgba(0,0, 0,0.7);
+    background:rgb(0,0,0);
     backdrop-filter: blur(15px);
-    box-shadow: 0 25px 45px 0 rgba(0,0,0,0.4);
-    border-radius: 10%;
+    box-shadow: 0 25px 45px 0 rgba(255,255,255,0.6);
+    border:20px grey ridge;
     
 }
 .exam-form h3{
@@ -26,6 +26,8 @@ body{
 }
 header{
     background-color:rgba(0,0,0,0.4);
+    font-size: larger;
+    padding-left: 20px!important;
     
 }
 button{
