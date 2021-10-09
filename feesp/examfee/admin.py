@@ -4,7 +4,8 @@ from login.admin import ac_site,DontLog
 # Register your models here.
 
 class examfeepaidAdmin(DontLog,admin.ModelAdmin):
-    list_display=('roll_no','amount_paid')
+    list_display=('name','roll_no','course','sem','register_no','amount_paid')
+    search_fields=('register_no',)
 
     def has_add_permission(self, request):
         return False
@@ -12,7 +13,9 @@ class examfeepaidAdmin(DontLog,admin.ModelAdmin):
         return False
 
 class sublistAdmin(admin.ModelAdmin):
-    list_display=('sub_code','subject','fee')
+    list_display=('sub_code','course','sem','subject','fee')
+    search_fields=('sub_code',)
+
 
 
 

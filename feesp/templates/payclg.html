@@ -1,27 +1,363 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Acadamic pay description</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Gabriela7family=Merienda&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Berkshire+Swash&family=Carter+One&family=Cinzel+Decorative:wght@700&family=Poppins:wght@100&display=swap&family=Merienda&display=swap" rel="stylesheet">
+    <script
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+   ></script> 
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p>
-                    Congratulations!!! your payment for examination fees is successful..
-                </p>
-            
+    <div class="container-fluid  justify-content-center containers" id="blur">
+        <div class="col-14">
+            <div class="card-list col-12 container-fluid justify-content-center">
+                <div class="box col-12 col-md-5">
+                    <img style="align-self: center; margin:auto;" src="{% static 'images/flogo.png' %}"  alt="image not found">
+                    <div class="content col-12 col-md-12">
+                        <h2>Proceed To Pay....</h2>
+                        <form method="POST" action="pay/">
+                            {% csrf_token %}
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4  col-input-label" id="label">Name:</label>
+                                <li class="fas fa-user"></li>
+                                <div class="col-md-7 col-11">
+                                    <input value="{{data.name}}"  type="text" class="input" id="name" readonly  name="name" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="roll no" class="col-md-4  col-input-label" id="label">Roll No:</label>
+                                <i class="fas fa-sort-numeric-up-alt"></i>
+                                <div class="col-md-7 col-11">
+                                    <input value="{{data.roll_no}}" type="text" class="input" id="rollno" readonly name="rollno" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="class" class="col-md-4  col-input-label" id="label">Class:</label>
+                                <i class="fas fa-user-graduate"></i>
+                                <div class="col-md-7 col-11">
+                                    <input value="{{data.course}}{{data.year}}" type="text" class="input" id="class" readonly name="class" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="emailId" class="col-md-4 col-input-label" id="label">Email Id:</label>
+                                <i class="fas fa-envelope"></i>
+                                <div class="col-md-7 col-11">
+                                    <input value="{{data.email}}" type="email" class="input" id="emailid" readonly name="emailid" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="amount" class="col-md-4 col-input-label" id="label">Amount:</label>
+                                <i class="fas fa-coins"></i>
+                                <div class="col-md-7 col-11">
+                                    <input value="{{amnt}}" type="text" class="input" id="amount" readonly name="amt" required>
+                                </div>
+                            </div>
+                            <input style="display: none;" type="text" name="type" value="acadfee">
+                            <div class="form-group row justify-content-center">
+                                <div class="col-7 col-md-4">
+                                    <button type="submit" class="input btn">
+                                        SUBMIT
+                                    </button>
+                                </div>
+                            </div>
+                            {% csrf_token %}
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-               <a href="saveacad"> <button class="btn">Payment Success</button> </a>
-            </div>
-            </div>
+        <!----<div class="row">
+            <form method="POST" action="pay/">
+                {% csrf_token %}
+                <input style="display: none;" type="text" name="type" value="acadfee">
+                <input type="text" value="{{amnt}}" name="amt">
+                <button type="submit">Proceed to pay</button>
+                {% csrf_token %}
+            </form>
+        </div>--->
     </div>
+    <div>
+
+
+        <!---Pop Up div startssss---------------------------------------------------->
+       {% if cstatus != "None" %}
+       <div class="conainer">
+        <div class="row">
+            <div id="popup" class="col-11 col-md-4">
+                <br>
+                {% if cstatus == 'Approved' %}
+                <h2>Congratulations!! your concession request is aproved proceed to pay with concession:)</h2>
+                <br>
+                <hr>
+                <a style="text-align:center;" href="#" onclick="toggle()">OK</a>  
+                {% elif cstatus == 'Rejected' %}  
+                <h2>Sorry!! your concession request is Rejected proceed to pay full fees:)</h2>
+                <br>
+                <hr>
+                <a style="text-align:center;" href="#" onclick="toggle()">OK</a>
+                {% else %} 
+                <h2>Your concession application is under process!! wait for confirmation mail:)</h2>
+                <br>
+                <hr>
+                <a style="text-align:center;" href="homepage" onclick="toggle()">OK</a>         
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        toggle();
+        function toggle(){
+        var blur=document.getElementById('blur');
+        blur.classList.toggle('active');
+        var popup=document.getElementById('popup');
+        popup.classList.toggle('active');
+        }
+        
+    </script>
+    </div>
+       {% endif %}
 </body>
+<style>
+    *{
+
+   
+        font-family: 'Roboto', sans-serif;
+    
+    }
+    
+    body{
+         /*background-color: #1a1a1a!important;*/
+         background-color:black!important ;
+        display:flex;
+        color: black!important;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container-fluid{
+        
+        margin: auto;
+    }
+    .flex-box{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    } 
+    .card-list{
+        
+        display: flex;
+        padding: 20px;
+        /*width:33.33%;*/
+        width: 100%;
+        background-position: center;
+        align-items: center;
+    
+    }
+    .box{
+        background-color: #eee;
+            border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 0px 10px 0px #fbda43;
+       
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        /*padding:0 20px 20px 20px;*/
+        
+        
+    }
+    .box img{
+        width: 180px;
+        height: 180px;
+        position: center;
+        margin-top: 20px!important;
+        border-radius: 50%;
+        /*border-radius: 15px 15px 0 0;*/
+        /*clip-path: pentagon(0 0,100% 0, 100% 87%, 0% 100%);
+        clip-path: circle(50% at 50% 50%);*/
+        color: black;
+        
+        box-shadow:
+        /*logo shadow*/
+         0px 0px 2px #5f5f5f,
+         /* offset*/
+         0px 0px 0px 5px #ecf0f3,
+         /* bottom right*/
+         8px 8px 15px #a7aaaf,
+         /*top left*/
+         -8px -8px 15px #ffffff;
+    
+    
+        
+    }
+    .box h2{
+        font-size: 26px;
+        line-height: 46px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    
+    .box p{
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .content h2{
+        color: black;
+        font-size: 28px;
+        font-weight: 900;
+        text-shadow: 2px 2px 2px #fff, -1px -1px -1px #A4A4A4;
+        text-align: center;
+        margin-bottom: 16px;
+        letter-spacing: 2px;
+        font-family: 'Merienda';
+        margin-left: 40px;
+    }
+    #label{
+        font-size: 20px;
+        font-family: 'Gabriela', serif;
+    }
+    .input{
+        appearance: none;
+        border: none;
+        outline: none;
+        background: none;
+        padding:12px;
+        border-radius: 10px;
+        
+        display: block;
+        width:100%;
+        max-width: 400px;
+        
+        box-shadow: 
+        inset -4px -4px 10px 4px #fff,
+        inset 4px 4px 10px 4px #C4C4C4;
+        
+        color: black;
+        font-size: 15px;
+        font-family: 'Gabriela', serif;
+        transition: 0.2s ease-out;
+    }
+    
+    .input::placeholder {
+        color:black;
+    }
+     .input:focus{
+         box-shadow: 
+         inset -1px -1px 3px 1px #FFF,
+         inset 1px 1px 3px 1px #C4C4C4;
+     }
+    
+    .btn{
+        /*color: #AABBBB;*/
+        color: black;
+        cursor: pointer;
+        border: 3px solid black!important;
+        padding:10px;
+        font-weight: 700;
+        border-radius: 50px!important;
+        
+        box-shadow:
+         -4px -4px 13px 4px #FFF,
+        4px 4px 13px 4px #C4C4C4;
+    }
+    
+    .btn:focus{
+        box-shadow:
+        -4px -4px 13px 4px #FFF,
+        4px 4px 13px 4px #C4C4C4;
+    }
+    
+    .btn:hover{
+        box-shadow:
+        -3px -3px 8px 3px #fff,
+        3px 3px 8px 3px #C4C4C4;
+    }
+    
+    /*.btn.active{
+        color:#FF5858;
+        box-shadow:
+        -2px -2px 8px 2px #C4C4C4,
+        2px 2px 8px 2px #FFF;
+        border-color: #DFDFDF;
+    }*/
+    
+    .btn:active{
+        color: #FF5858;
+        box-shadow:
+            -4px -4px 13px 4px #C4C4C4,
+            4px 4px 13px 4px #FFF;
+        border-color: #DFDFDF;
+    }
+    #popup h2{
+        font-weight: 30px;
+        margin-bottom: 10px;
+        color: #222;
+        text-align: center;
+        font-family: 'Bree Serif';
+      
+    }
+    #popup hr{
+        background: rgba(0,0,0,0.5);
+        size: 2px;
+    }
+    .containers#blur.active{
+        filter: blur(10px);
+        pointer-events: none;
+        user-select: none;
+    }
+    .containers .content img{
+        max-width: 100%;
+        display: block;
+    
+    }
+    .content a, #popup a{
+        position: center;
+        padding: 5px 20px;
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #fff;
+        background: #111;
+        margin-left: 36%;
+      
+    }
+    
+    #popup{
+        position: fixed;
+        top:40%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 40px;
+        box-shadow: 0 6px 30px rgba(17, 2, 2, 0.877);
+        /*background:rgba(241, 238, 238, 0.61);*/
+        background: rgba(255, 255, 255, 0.753);
+        backface-visibility: hidden;
+        opacity: 0;
+        transition: 0.5s;
+        border-radius: 30px;
+        backdrop-filter: blur(100px);
+        border-inline: 9px solid black;
+    }
+    
+    #popup.active{
+        top:50%;
+        visibility: visible;
+        opacity: 1;
+        transition: 0.5s;
+    }
+    /* css for popup  ends************************************************/
+</style>
 </html>

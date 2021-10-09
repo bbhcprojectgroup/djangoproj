@@ -2,7 +2,7 @@
 
 # Register your models here.
 from django.contrib import admin
-from login.models import Account
+from login.models import Account,setCllegeInfo
 
 # Register your models here.
 
@@ -26,8 +26,19 @@ class AccntAdmin(DontLog,admin.ModelAdmin):
         return False
     def has_change_permission(self, request, obj=None):
         return False
+
+class setCllegeInfoAdmin(DontLog,admin.ModelAdmin):
+    list_display=('president_name','principal_name','vice_principal_name')
+
+    def has_add_permission(self, request):
+        return False
+    def has_delete_permission(self, request, obj=None):
+        return False
     
+
 
 ac_site=accAdmin(name='Administration')
 
 ac_site.register(Account,AccntAdmin)
+ac_site.register(setCllegeInfo,setCllegeInfoAdmin)
+

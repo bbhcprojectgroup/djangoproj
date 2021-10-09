@@ -11,6 +11,8 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Login/registration</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -52,7 +54,7 @@
                             <em class="fas fa-lock"></em>
                             <input id="password_two" class="passcode" name="password1" type="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');" placeholder="CONFIRM PASSWORD" required>
                         </div>
-                        <button type="submit" class="submit-btn" onclick="firstencrypt()">Submit</button>
+                        <button type="submit" class="submit-btn" onclick="firstencrypt()">Sign Up</button>
                         <input type="checkbox" id="regcheck" onclick="passVisible1()" ><span>Show Password</span>
                         <button type="button" class="btn-flip" onclick="openLogin()">I have an Account</button>
                     </form>
@@ -76,7 +78,7 @@
                          <em class="fas fa-lock"></em>
                          <input type="password" name="password" placeholder="PASSWORD" class="passcode1" required>
                        </div>  
-                        <button type="submit" class="submit-btn">Submit</button>
+                        <button type="submit" class="submit-btn">Sign In</button>
                         <input type="checkbox" id="logcheck" onclick="passVisible()" ><span>Show Password</span>
                         <button type="button" class="btn-flip" onclick="openRegister()">I'm new here</button>
                         <a href="/password_reset">Forgot Password</a>

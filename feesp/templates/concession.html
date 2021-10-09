@@ -1,0 +1,279 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>concession</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
+</head>
+<body>
+    {% if msg %}
+    <ul class="cards">
+      <li class="card card-front" style="height:600px; margin:auto; vertical-align:center">
+        <h1>Thank You</h1>
+    
+        <p>{{msg}}</p>
+        <a href="homepage"><button type="button">Go to Home</button></a>
+      </li>
+      <li class="card d-sm-none d-md-block" style="height:600px;">
+        <h1> </h1>
+    
+      
+      </li>
+     
+
+    </ul>
+    {% else %}
+    <ul class="cards">
+  
+      <li class="card card-front">
+      
+      <div class="container-fluid fullcard">
+      <div class="row clgname justify-content-center">
+          <div class="col-12 col-md-6">
+              <h1 >Fees concession Form.... </h1>
+              
+          </div>
+      </div>
+      <div class="row justifuy-content-center">
+          <div class="col-12">
+            <div class="container">
+              <form method="POST" action="/applyconc" enctype="multipart/form-data">
+                {% csrf_token %}
+    
+    
+                <div class="row top-buffer form-group">
+                    <div class="col-12 col-md-6"><label>Name<span style="color: red;">*</span></label><input class="form-control" type="text" name="name" required/></div>
+                
+                  <div class="col-12 col-md-6"><label>Email Id<span style="color: red;">*</span></label><input readonly value="{{user.email}}" class="form-control" type="email" name="email" required/></div>
+              </div>
+                <div class="row top-buffer form-group">
+                    <div class="col-12 col-md-6">Course<span style="color: red;">*</span>&nbsp;<select class="form-control" name="course" id="course" onchange="course()">
+                      <option>--------------</option>
+                      <option>BCA</option>
+                      <option>BCom</option>   
+                      <option>Bsc</option>
+                      <option>BBA</option>   
+                             
+                  </select></div>
+                
+                  <div class="col-12 col-md-6">year<span style="color: red;">*</span>&nbsp;<select class="form-control" name="year" id="year" onchange="year()">
+                    <option>---------------</option>
+                    <option>1</option>
+                    <option>2</option>  
+                    <option>3</option>       
+                </select></div>
+                </div>
+                <div class="row top-buffer form-group">
+                    <div class="col-12 col-md-6">Roll No<span style="color: red;">*</span><input class="form-control" type="text" name="rlno" required/></div>
+                
+                    <div class="col-12 col-md-6">Fees concession Type<span style="color: red;">*</span>
+                        <select class="form-control" name="contype" id="contype" name="type" onchange="contype()">
+                            <option>90% above scholarship</option>
+                            <option>girls scholarship</option>
+                            <option>sc/st scholarship</option>        
+                        </select>
+                        
+                </div>
+                </div>
+                <div class="row top-buffer form-group">
+                  <div class="col-12">
+                    <label>Relevant document<span style="color: red;">*</span></label>
+                    <input class="form-control" type="file" id="myFile" name="file" required>
+              
+                  </div>
+                </div>
+                <div class="row top-buffer form-group justify-content-center">
+                  <div class="col-6">
+                    <button type="submit" class="btn btn-primary" style="width: 100%; border:3px black ridge; background:transparent; color:black; border-radius:20px; ">
+                      Proceed
+                  </button>
+                  </div>
+                </div>
+            </form>
+            </div>
+                      
+                  </div>
+
+  
+          </div>
+      </div>
+  
+
+
+
+    
+  </div>
+  </li>
+  <li style="font-size: 30px;" class="card  d-sm-none d-md-block" style="height: 600px;">
+    <h1>Fee Concession application Section </h1>
+
+    <p>{{msg}}</p>
+  </li>
+  
+  
+</ul>
+    {% endif %}
+
+    
+  <script>
+    $.fn.commentCards = function(){
+
+return this.each(function(){
+
+var $this = $(this),
+    $cards = $this.find('.card'),
+    $current = $cards.filter('.card--current'),
+    $next;
+    
+
+/*$cards.on('click',function(){
+  if ( !$current.is(this) ) {
+    $cards.removeClass('card--current card--out card--next');
+    $current.addClass('card--out');
+    $current = $(this).addClass('card--current');
+    $next = $current.next();
+    $next = $next.length ? $next : $cards.first();
+    $next.addClass('card--next');
+  }
+});*/
+
+function changecard(){
+    $cards.removeClass('card--current card--out card--next');
+    $current.addClass('card--out');
+    $current = $(this).addClass('card--current');
+    $next = $current.next();
+    $next = $next.length ? $next : $cards.first();
+    $next.addClass('card--next');
+  }
+
+
+if ( !$current.length ) {
+  $current = $cards.last();
+  /*$cards.first().trigger('click');*/
+  if ( !$current.is(this) ) {
+    $cards.removeClass('card--current card--out card--next');
+    $current.addClass('card--out');
+    $current = $(this).addClass('card--current');
+    $next = $current.next();
+    $next = $next.length ? $next : $cards.first();
+    $next.addClass('card--next');
+  }
+}
+
+$this.addClass('cards--active');
+
+})
+
+};
+
+$('.cards').commentCards();
+</script>
+  </body>
+  <style>
+      .cards {
+  position: absolute;  
+  list-style-type: none;
+  padding: 0;
+  max-width: 60em;
+  margin: 10% auto 0;
+  
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  background: #ccc;
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 0 40px #000;
+  transform: translateY(0) rotate(0deg) translateX(25px) scale(1);
+  transform-origin: 0 0;
+  
+  transition: transform 0.6s cubic-bezier(.8,.2,.1,0.8) 0.1s,
+    background 0.4s linear;
+  
+  cursor: pointer;
+  user-select: none;
+  
+}
+.card:last-child {
+    margin-bottom: 0; 
+    }    
+  
+
+
+.card--next { 
+  z-index: 5; 
+  transform: translateY(-25px) rotate(4deg) translateX(25px) scale(1);
+}
+
+.card--out {
+  animation: card-out 0.6s cubic-bezier(.8,.2,.1,0.8);
+  transform: translateY(-50px) rotate(8deg) translateX(55px) scale(0.95);
+  z-index: 1;
+  background: #bbb;
+}
+
+@keyframes card-out {
+  0% { z-index: 20; transform: translateY(0px) rotate(-4deg); }
+  50% { transform: translateY(-120%) rotate(-5deg) translateX(-40px); }
+  80% { z-index: 1; }
+  100% { transform: translateY(-50px) rotate(8deg) translateX(55px) scale(0.95); }
+}
+
+.card--current {
+  cursor: auto;
+  user-select: auto;
+  position: relative;
+  z-index: 10;
+  opacity: 1;
+  background: #EEE;
+  transform: rotate(-1deg) translateX(0%) scale(1);
+}
+
+.fullcard{
+    border: 3px solid black;
+    border: 5px ridge black;
+   
+}
+
+.clgname{
+    text-align: center;
+}
+.top-buffer { 
+    margin-top:20px; 
+}
+.form-control{
+  border: 1px solid black;
+  border-radius: 20px;
+
+}
+
+
+
+h1 { margin: 0; }
+html, body { height: 100%; }
+body { padding: 40px; background: #222232; 
+  text-align: center;}
+  @media(max-width:450px){
+    .card{
+      width: 150%;
+      margin-left: -35%;
+      
+    }
+    html,body{
+      overflow-x: hidden;
+    }
+  }
+  </style>
+ 
+</html>

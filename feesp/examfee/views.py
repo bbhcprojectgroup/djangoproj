@@ -14,6 +14,7 @@ from django.template.loader import render_to_string
 from weasyprint import HTML,CSS
 import tempfile
 from feesp.settings import MEDIA_ROOT
+from login.models import setCllegeInfo
 
 
 
@@ -28,6 +29,7 @@ from io import BytesIO
 
 @login_required
 def exform(request):
+
     site=site_settings.objects.get()
     assoc=association.objects.all()
     print(assoc)
@@ -45,11 +47,12 @@ def exform(request):
                 if(s.sem%2!=0):
                     slist.append(model_to_dict(s))
         sub_json=dumps(slist)
+        print(sub_json)
         pass_sem={'sem1':semlist[0],'sem2':semlist[1],'sem3':semlist[2],'listsub':sub_json,'associations':assoc}
         
         return render(request,'examform.html',pass_sem)
     else:
-        return render(request,'error.html')
+        return render(request,'error.html',{'user':request.user})
 
 """def savestud(request):
     if(request.method=='POST'):
@@ -75,6 +78,8 @@ def myajaxtestview(request):
         expaid.register_no=request.POST['regNo']
         expaid.course=request.POST['course']
         expaid.sem=request.POST['sem']
+        if(expaid.sem=='PASSED OUT'):
+            expaid.sem=0
         x=request.POST['sub']
         expaid.month=request.POST['monthyear']
         expaid.college_code=request.POST['col_code']
@@ -89,6 +94,10 @@ def myajaxtestview(request):
 
 @login_required
 def exprintform(request):
+    if(expaid.sem!=0 and examfeepaid.objects.filter(email=expaid.email, sem=expaid.sem).exists()):
+        return render(request,'examform.html',{"paid":"paid"})
+       
+        
     
     add_fee=site_settings.objects.get()
     csem=data[0]['sem']
@@ -150,18 +159,10 @@ def exprintform(request):
 
 
 
-def download_file(request):
-    print("download")
-    context['bton']=False
-    context['pdf']=True
-    print(context['bton'])
-    file_name=expaid.register_no+".pdf"
-    response = FileResponse(open(MEDIA_ROOT + "/examForms/" + file_name, 'rb'))   
-    return response
 
-
-
+@login_required
 def save_sign(request):
+           
            print("sign uploaded")
            context['bton']=False
            context['pdf']=False
@@ -174,14 +175,16 @@ def save_sign(request):
                 for chunk in sign_image.chunks():
                         f.write(chunk)                 
            return render(request,'form.html',context)
- 
-def data_save(request):
+@login_required 
+def data_save(request,transid):
+    expaid.transaction_id=transid
     if(examfeepaid.objects.filter(email=expaid.email).exists()):
-        print("match found")
+       
         user = examfeepaid.objects.get(email=expaid.email)
         user.delete()
     context['bton']=False
     context['pdf']=True
+    print("saving")
     html_string = render_to_string('form.html', context, request=request)
     html = HTML(string=html_string, base_url='request.build_absolute_uri()')
     result = html.write_pdf(presentational_hints=True)
@@ -197,5 +200,35 @@ def data_save(request):
         expaid.form_image.save(expaid.register_no+".pdf",output)
         if os.path.exists(MEDIA_ROOT + "/" + expaid.register_no+".png"):
             os.remove(MEDIA_ROOT + "/" + expaid.register_no+".png")
+    clginfo=setCllegeInfo.objects.get()
+    context["psign"]=clginfo.principal_sign
+    context["csign"]=clginfo.clerk_sign
+    context["trans"]=transid
+    html_string = render_to_string('re3.html', context, request=request)
+    html = HTML(string=html_string, base_url='request.build_absolute_uri()')
+    result = html.write_pdf(presentational_hints=True)
+    with tempfile.NamedTemporaryFile(delete=True) as output:
+        output.write(result)
+        output.flush()
+        output = open(output.name, 'rb')
+        #response.write(output.read())
+        expaid.receipt_image.save(expaid.register_no+".pdf",output)
+        
+
     return render(request,'paysuccess.html')    
    
+@login_required
+def download_file(request):
+    """print("download")
+    context['bton']=False
+    context['pdf']=True
+    print(context['bton'])"""
+    
+    response = FileResponse(open(MEDIA_ROOT + "/"+str(expaid.form_image), 'rb'))   
+    return response
+@login_required
+def exreceipt(request):
+    response = FileResponse(open(MEDIA_ROOT + "/"+str(expaid.receipt_image), 'rb'))   
+    return response
+
+

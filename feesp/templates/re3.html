@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Exam Fee Pay receipt</title>
+  <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="re.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    .container{
+        border: 3px solid black;
+        border: 5px ridge black;
+    }
+    .clgname{
+        text-align: center;
+    }
+    .top-buffer { 
+        margin-top:20px; 
+    }
+    .form-control{
+        border: 0;
+            border-bottom: 1px dashed black;
+      
+            outline: 0;
+    }
+</style>
+<body>
+    <div class="container">
+    <div class="row clgname justify-content-center" style="border: 2px solid black; margin:2px;">
+        <div class="col-12 col-md-6">
+            <h1>Dr.B.B.Hegde First Grade College</h1>
+            <p>KUNDAPURA-576201, Udupi Dist.<br>
+            (Managed by coondapur Education Society(R.),Kundapura)</p>
+        </div>
+    </div>
+    <div class="row justifuy-content-center" style="border: 2px solid black; margin:2px;">
+        <div class="col-12">
+            <form>
+                <div class="row justify-content-center form-group">
+                    <div class="col-sm-6"><label>Transaction No.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{trans}}<label> Date&nbsp;&nbsp;&nbsp;&nbsp;{% now 'd/m/Y' %}</label></div>
+                  
+                </div>
+    
+    
+                <div class="row top-buffer form-group">
+                    <div class="col-12"><label>Name</label>&nbsp;&nbsp;&nbsp;&nbsp;{{obj.name}}</div>
+                </div>
+                <div class="row top-buffer form-group">
+                    <div class="col-12 col-md-4">Registration No.&nbsp;&nbsp;&nbsp;&nbsp;{{obj.register_no}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Course:&nbsp;&nbsp;&nbsp;&nbsp;{{obj.course}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Sem:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{obj.sem}}</div>
+                </div>
+                <div class="row top-buffer form-group">
+                    <div class="col-sm-12">Year&nbsp;&nbsp;&nbsp;&nbsp;{% now 'Y' %} </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="row justifuy-content-center" style="border: 2px solid black; margin:2px;">
+    <div class="col-12">
+        <table border="1" class="table" style="margin: auto;"> 
+            <tr>
+                <th>Particulars</th>
+                <th>Rs</th>
+            </tr>
+            <tr>
+                <td>App.Fee</td>
+                <td>{{afee}}</td>
+            </tr>
+            <tr>
+                <td>I/II SEM<br>M.Fee<br>Exam Fee</td>
+                <td>
+                    {% if t1 > 0 %}
+                    {{mfee}}<br>
+                    {{t1}}
+                    {% endif %}
+                </td>
+                
+
+            </tr>
+            <tr>
+                <td>III/IV SEM<br>M.Fee<br>Exam Fee</td>
+                <td>
+                    {% if t2 > 0 %}
+                    {{mfee}}<br>
+                    {{t2}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>V/IV SEM<br>M.Fee<br>Exam Fee</td>
+                <td>
+                    {% if t3 > 0 %}
+                    {{mfee}}<br>
+                    {{t3}}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Fine</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>special Fee</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>{{t}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Recieved Rs&nbsp;&nbsp;&nbsp;&nbsp;{{t}} </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="row" style="margin-top: 30px;">
+                    <img style="margin-left:10px;display:inline-block;" src="media/{{csign}}" height="50px" width="200px" alt="media/{{psign}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style="margin-right:10px;display:inline-block;" src="media/{{psign}}" height="50px" width="200px" alt="media/{{psign}}">
+                    <br>
+                    </div>
+                    <div style="margin-top:20px">
+                        <label class="lb offset-1">Casher&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><label class="ll offset-2">Principal</label>
+
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+        </div>
+        </div>
+    </div>
+
+</body> 
+</html>

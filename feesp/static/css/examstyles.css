@@ -2,38 +2,170 @@
     padding: 0;
     margin:0;
     font-family: sans-serif;
+    
 }
 
 body{
-    background: url('../images/exam3.jpg');
+    /*background-image: url('../images/.jpg');*/
     background-size: cover;
+
     background-attachment: fixed;
     background-repeat: no-repeat;
-    color:#fff;
+    background-position: center;
+    backdrop-filter: blur(0px);
+    color:black;
     padding-top:6%;
 }
+
 .exam-form{
     
-    background:rgb(0,0,0);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 25px 45px 0 rgba(255,255,255,0.6);
-    border:20px grey ridge;
+    /*background:black ;
+    background:rgba(255, 165, 0, 0.4);
+    /*backdrop-filter: blur();
+    background-color: #f39f86;
+    background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+    background-color: #bbf0f3;
+background-image: linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%);*/
+/*background-image: url("../images/exambg.jpeg");*/
+background-color: #130f40;
+background-image: linear-gradient(315deg, #999 0.5%, #fff 74%);
+
+
+    border: 30px rgb(90,90,90) inset;
+
+    box-shadow: -20px 20px 30px 30px rgb(5,5,5,0.5);
+    
     
 }
 .exam-form h3{
-    font-style: italic;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-header{
-    background-color:rgba(0,0,0,0.4);
-    font-size: larger;
-    padding-left: 20px!important;
+    /*font-style: Extra-bold 800 italic;
+    font-family: 'Emilys Candy', cursive;*/
+    
+    font-size: 38px;
+    font-family: 'Gabriela', serif;
     
 }
-button{
-    background:rgba(0,0, 0, 0.5);
+.exam-form h5{
+        font-family: 'Gabriela', serif;
+}
+
+.exam-form label, input,select{
+    font-size: 17px;
+    font-family: 'Arvo';
+}
+header{
+    font-style:Regular 400;
+    background-color:rgba(0,0,0);
+    
+}
+.btn{
+    /*background:rgba(0,0, 0, 0.5);*/
+    background: black;
     width:40%;
     border:none;
     border-radius:50px !important;
     color:aliceblue;
+    
 }
+
+.backsub{
+    border:1px black solid;
+}
+.subs{
+    border:1px black solid;
+}
+
+input, select 
+{
+    margin-bottom: 10px;
+}
+    
+.ex:hover p,  .ex:hover i,  input:hover::placeholder 
+{
+    color:  black;
+}
+
+.ex input:hover, .ex select:hover
+{
+    box-shadow: 0 0 3px 0  black;
+    color: black;
+}
+
+.form-control{
+    border: 1px solid rgb(0, 0, 0);
+}
+.containers{
+    position: relative;
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    padding: 20px;
+}
+
+.containers .content{
+    position: relative;
+    max-width: 800px;
+}
+
+/* css for popup  starts************************************************/
+#popup h2{
+    font-weight: 30px;
+    margin-bottom: 10px;
+    color: #222;
+    text-align: center;
+    font-family: 'Bree Serif';
+  
+}
+#popup hr{
+    background: rgba(0,0,0,0.5);
+    size: 2px;
+}
+.containers#blur.active{
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+}
+.containers .content img{
+    max-width: 100%;
+    display: block;
+
+}
+.content a, #popup a{
+    position: center;
+    padding: 5px 20px;
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background: #111;
+    margin-left: 36%;
+  
+}
+
+#popup{
+    position: fixed;
+    top:40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 40px;
+    box-shadow: 0 6px 30px rgba(17, 2, 2, 0.877);
+    /*background:rgba(241, 238, 238, 0.61);*/
+    background: rgba(255, 255, 255, 0.753);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border-radius: 30px;
+    border-inline: 9px solid black;
+    backdrop-filter: blur(100px);
+}
+
+#popup.active{
+    top:50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+/* css for popup  ends************************************************/

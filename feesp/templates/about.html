@@ -1,40 +1,75 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>About us</title>
+        
         <link rel="stylesheet" href="{% static 'css/abstyle.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Berkshire+Swash&family=Carter+One&family=Cinzel+Decorative:wght@700&family=Poppins:wght@100&display=swap&family=Merienda&display=swap" rel="stylesheet">
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/64d58efce2.js"
          crossorigin="anonymous"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-        <nav class="navbar navbar-dark navbar-expand-sm fixed-top mb-5">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
+        <nav id="header" class="navbar navbar-expand-lg navbar-dark" >
+            <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" height="50" width="51" alt="logo"><span style="color: goldenrod;">FEEPAY</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="homepage" ><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#" style="text-decoration: underline;" ><span class="fa fa-info fa-lg"></span>ABOUT US</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/feedback"><span class="fa fa-pen-square fa-lg mr-1"></span>FEEDBACK</a>
+                </li>
+                <li  class="nav-item active">
+                  <a class="nav-link" href="/log_out" ><span class="fa fa-sign-out"></span>LOG OUT</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="homepage"  ><span class="fa fa-home fa-lg"></span>HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a style="text-decoration: underline;" class="nav-link" href="#"><span class="fa fa-info fa-lg" style="text-decoration: underline;"></span>ABOUT US</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/feedback"><span class="fa fa-pen-square fa-lg mr-1"></span>FEEDBACK</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/register" ><span class="fas fa-sign-in-alt"></span>STUDENT LOGIN</a>
+                </li>
+                {% endif %}
+              </ul>
+              </div>
+          </nav>
+         
+        <section class="navs">
+        <div class="container about" id="about-us">
+        
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+                <!--<div class="containers">-->
                     
-                </button>
-                <a class="navbar-brand mr-5" href="#"> <img src="{% static 'images/bbhlogo.jpeg' %}" height="30" width="41" alt="logo">
-                </a>
-                <div class="collapse navbar-collapse" id="Navbar">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link active mr-5" href="/"><span class="fa fa-home fa-lg"></span> Home</a></li>
-                     <li class="nav-item"><a class="nav-link active mr-5" href="/index" style="text-decoration: underline;"><span class="fa fa-info fa-lg"></span> About</a></li>
-                      <li class="nav-item"><a class="nav-link active mr-5" href="/feedback"><span class="fa fa-pen-square fa-lg mr-1"></span>Feedback</a></li>
-                      <!---- <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-card fa-lg"></span></a></li>-->
-    
-                 </ul>
-               
-            </div>
-    
-            </div>
-    
-        </nav>
-        <div class="header">
-            <div class="main">
+                        <!--<div class="main">-->
                  <!--col-12 col-md-6"-->
-                 <h1>About Us...</h1>
+                 <br><br>
+                 <h1>About FeePay....</h1>
                         <p>The Online Fees Payment portal is to make a Fees payment by online instead of making a payment 
                         throuth long queue in office, It takes more time, To avoiding this to make a payment on online
                         it saves time.<br><br>
@@ -51,10 +86,108 @@
                         and they can save and print the receipt.<br>
                         This portal also provides the Feedback option In that the students can give suggestions to this portal and satisfaction
                         about this portal.</p>
+                        <br><br>
+
+                        <div class="abt_us row justify-content-center">
+                            <h2>About developers.-.</h2>
+                            <div class="col-7 col-md-4">
+                                <br>
+                                <img id="img1"  style="align-self: center; margin:auto;" src="{% static 'images/nithin.jpeg' %}" alt="image not found">
+                                <br>
+                                <h3 align="center">Nithin</h3>
+                                <p align="center">2020-21 Batch Student</p>
+                                <p align="center">III BCA</p>
+                                
+                            </div>
+                            <div class="col-7  col-md-4">
+                                <br>
+                                <img id="img1"  style="align-self: center; margin:auto;" src="{% static 'images/kavya.jpeg' %}" alt="image not found">
+                                <br>
+                                <h3 align="center">Kavya</h3>
+                                <p align="center">2020-21 Batch Student</p>
+                                <p align="center">III BCA</p>
+                                
+                            </div>
+                            <div class="col-7  col-md-4">
+                                <br>
+                                <img id="img1"  style="align-self: center; margin:auto;" src="{% static 'images/asha.JPG' %}" alt="image not found">
+                                <br>
+                                <h3 align="center">Asha</h3>
+                                <p align="center">2020-21 Batch Student</p>
+                                <p align="center">III BCA</p>
+                                
+                            </div>
+                            
+                        </div>
+                    
+                        </div>
+                </div>
+                </div>
+                <div class="justify-content-center">
+                
             </div>
-        </div>
+        
+            <footer class="footer mt-2">
+                <div class="container">
+                    <div class="row">             
+                    
+                        <div class="col-12 col-md-4 address">
+                          <h5>VISIT Us...</h5>
+                          <address>
+                            <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=247&amp;height=99&amp;hl=en&amp;q=Dr.B.B.Hegde First Grade College,Kundapura<br>                   [A Unit of Coondapur Education Society (R).Kundapura]                    Vishalakshi B.Hegde Campus,                    Kundapura, Udupi Dist,                    Karnataka-576201&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.fnfgo.com/">FNF Mods</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:99px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:99px;}.gmap_iframe {height:99px!important;}</style></div>
+                          Dr.B.B.Hegde First Grade College,Kundapura<br>
+                          [A Unit of Coondapur Education Society (R).Kundapura]
+                           Vishalakshi B.Hegde Campus,
+                           Kundapura, Udupi Dist,
+                           Karnataka-576201<br>
+                             
+                           </address>
+                        </div>
+                        <div class="col-12 col-md-3">
+                                <h5>QUICK LINKS</h5>
+                                <ul style="list-style-type: none;" class="quicklinks">
+                                  <li><a href="/">HOME</a></li>
+                                  <li><a href="/index">ABOUT</a></li>
+                                  <li><a href="/feedback">FEEDBACK</a></li>
+                                  <li><a href="/payexam">EXAM FEE</a></li>
+                                  <li><a href="/clgform">COLLEGE FEE</a></li>
+                                  <li><a href="concssion/">APPLY CONCESSION</a></li>
+        
+                                </ul>
+        
+                         </div>
+        
+                            
+                        <div class="col-12 col-md-5">
+                          <h5>CONNECT WITH US...</h5>
+                          <i class="fa fa-phone fa-lg"></i><a style="color: white;" href="tel:08254-235589">Call us at : 08254-235589</a><br>
+                          <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link" style="color: aliceblue;">bbhegdecollegekundapur@rediffmail.com</a>
+                          <br>
+                          <a class="btn btn-social-icon btn-google mr-3" href="https://bbhegdecollege.in/" target="blank"><i class="fa fa-google-plus fa-lg"></i> </a>
+                          
+                          <a class="btn btn-social-icon btn-facebook mr-3" href="https://www.facebook.com/Dr-BB-Hegde-First-Grade-College-BBHC-878478628896016/" target="blank"><i class="fa fa-facebook fa-lg"></i> </a>
+        
+                         <a class="btn btn-social-icon btn-google mr-3" href="https://youtube.com/channel/UC_YbvrqDgf_CS500hPEt2rw" target="blank"><i class="fa fa-youtube fa-lg"></i> </a>
+                          <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/dr.bbhckundapura/?utm_medium=copy_link" target="blank"><i class="fa fa-instagram fa-lg"></i> </a>
+        
+                            
+                        </div>
+                   </div>
+                </div>
+            </footer>
+     
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </section>
     </body>
 </html>
+
+
+
+
+
+
+
+
+

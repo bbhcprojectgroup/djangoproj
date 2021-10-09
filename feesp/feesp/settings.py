@@ -153,15 +153,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-
-
 #email settings
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL='login.Account'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 EMAIL_HOST='smtp.gmail.com'
+#EMAIL_HOST='localhost'
 EMAIL_PORT=587
 EMAIL_HOST_USER='feepayportal@gmail.com'
 EMAIL_USE_TLS=True
@@ -176,6 +176,12 @@ PAYTM_WEBSITE = 'WEBSTAGING'
 PAYTM_CHANNEL_ID = 'WEB'
 PAYTM_INDUSTRY_TYPE_ID = 'Retail'
 
+ACCOUNT_SID = 'AC13bcf30480722a98c888b8d7f39d92bd'
+AUTH_TOKEN  = 'aaf692d3b55c655b6e3ed16608f8f266' 
+
+
+#ACCOUNT_SID = 'ACdfaad50d8072862ef17220e0c0a50d36'
+#AUTH_TOKEN = 'f8ee4d027acd9c990819ca4927125645'
 
 
 

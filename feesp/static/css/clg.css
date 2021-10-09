@@ -1,56 +1,196 @@
-body{
+body {
+    min-height: 100%;
+    background:rgba(0, 0, 0, 0.8);
+    overflow-x: hidden;           
     
+    }
+ div, form, input, select, label, p { 
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: 'Baloo 2';
+    font-size: 20px;
+    
+    color: #111;
+    line-height: 22px;
 
-    background-color: rgb(2, 2, 46);
+}
+header{
+    font-style:Regular 400;
+    background-color:rgba(0,0,0);
+    
+}
+h1 {
+    position: absolute;
+    margin: 0;
+    font-size: 50px;
+    color: #fff;
+    z-index: 2;
+    line-height: 83px;
+    font-family: 'Gabriela', serif;
+}
+.testbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    padding: 20px;
+}
+form {
+    width: 100%;
+    padding: 20px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 8px #006622;
+    margin-top: 50px; 
+        
+}
+legend{
+    font-size: 28px;
+    font-family: 'Lobster Two';
    
+}
+.banner {
+    position: relative;
+    height: 300px;
+    background-image: url("../images/caps.jpg");  
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     
+}
+.banner::after {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.2);  
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+input, select {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+                            
+.item:hover p, .item:hover i,  input:hover::placeholder {
+    color:  #006622;
+}
+.item input:hover, .item select:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 0 3px 0  #006622;
+    color: #006622;
+}
+.item {
+    position: relative;
+    margin: 10px 0;
+}
+.item i {
+    right: 1%;
+    top: 30px;
+    z-index: 1;
+}
+.feebox{
+    border:1px solid #ccc;
+    border-radius: 3px;
+    width:107%;
+}
+
+.btn{
+		
+    margin: 0 auto;
+    display: block;
+    padding: 9px 9px;
+    width: 100px;
+    border: 2px solid rgb(121, 119, 119);
+    font-size: 16px;
+    font-family: tahoma;
+    background: rgba(0, 0, 0, 0.9);
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-radius: 15px;
+    text-align: center;
+    color:white;
+    margin-top: 40px;   
+}
+/*****style for input control border*/
+.form-control{
+    border: 1px solid rgb(0, 0, 0);
+}
+.containers{
+    position: relative;
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    transition: 0.5s;
+    padding: 20px;
+}
+
+.containers .content{
+    position: relative;
+    max-width: 800px;
+}
+
+/* css for popup  starts************************************************/
+#popup h2{
+    font-weight: 30px;
+    margin-bottom: 10px;
+    color: #222;
+    text-align: center;
+    font-family: 'Bree Serif';
+  
+}
+#popup hr{
+    background: rgba(0,0,0,0.5);
+    size: 2px;
+}
+.containers#blur.active{
+    filter: blur(10px);
+    pointer-events: none;
+    user-select: none;
+}
+.containers .content img{
+    max-width: 100%;
+    display: block;
 
 }
-h1{
-    margin-top: 5%!important;
-}
-.form-head{
-
-    
-    font-style: normal; 
-}
-
-.clgname{
-    top:30%;
-    color: red;
-    font-style: italic;
-    margin-left: 25%;
-    align-content:space-around;
-
-}
-.logo{
-    margin-left: 45%;   
-}
-img{
-    width: 110px;
-    height: 110px;
-}
-.acadform{
+.content a, #popup a{
+    position: center;
+    padding: 5px 20px;
+    display: inline-block;
     margin-top: 20px;
-    color: lavender;
-    padding-top:20px;
-    margin: 0px auto;
-    max-width: 80%;
-    background-image:url(../images/clgbg.jpg) ; 
-   
+    text-decoration: none;
+    color: #fff;
+    background: #111;
+    margin-left: 36%;
+  
 }
-/*
-.col-12{
-    background-image:url(../images/clgfsbg.jpg) ;   
-}
-.form-group{
-    background-image:url(../images/clgfsbg.jpg) ;      
-}
-label{
-    background-image:url(../images/clgfsbg.jpg) ;   
 
+#popup{
+    position: fixed;
+    top:40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 40px;
+    box-shadow: 0 6px 30px rgba(17, 2, 2, 0.877);
+    /*background:rgba(241, 238, 238, 0.61);*/
+    background: rgba(255, 255, 255, 0.753);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    border-radius: 30px;
+    border-inline: 9px solid black;
+    backdrop-filter: blur(100px);
 }
-input{
-    background-image:url(../images/clgfsbg.jpg) ;   
-}*/
 
+#popup.active{
+    top:50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+/* css for popup  ends************************************************/

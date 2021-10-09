@@ -10,15 +10,28 @@
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
          <link rel="stylesheet" href="{% static 'css/clg.css' %}">
     <title>College Academic Fees</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Bree+Serif&family=Baloo+2:wght@500&family=Lobster+Two:ital@1&display=swap" rel="stylesheet">
 
 </head>
 {% if msg == "notpaid" %}
 <body onload="yrrlist()">
 {% else %}
 <body>
+    
 {% endif %}
+<header class="fixed-top form-head">
+    <div class="container-fluid">
+        <img src="{% static 'images/logo.jpg' %}" alt="logo" height="60" width="61" class="ml-2">
+        <span style="color: goldenrod;">FEEPAY</span>
+    <a href="/homepage" style=" color:floralwhite;
+    background-color: black;
+    text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
+    </div>
+    
+</header>
 
-    <header class="fixed-top form-head">
+   <!------<header class="fixed-top form-head">
         <a href="/homepage" style=" color:floralwhite;
         background-color: transparent;
         text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
@@ -29,39 +42,50 @@
     </div>
     <div class="logo col-6">
         <img src="{% static 'images/bbhlogo.jpeg' %}" class="img-fluid" alt="‪">
-    </div>
-    {% if msg == "halfpaid" or msg == "notpaid" %}
+    </div>------>
+    <!---% if msg == "halfpaid" or msg == "notpaid" %--->
     
-    <div class="acadform">
-        
- 
-             <form action="pay/" method="post">
+    <div class="row row-content acadform containers" id="blur">
+        <div class="container col-13 col-md-8" >
+
+            <form action="clgfee" method="post">
                 {% csrf_token %}
-                 <div class="form-group row">
-                    <label for="name" class="col-md-3 col-form-label">Student's Name:</label>
+                <div class="banner">
+                    <h1 style="color: black;">Accademic Fees Pay</h1>
+
+                  </div>
+                  <br/>
+                <fieldset style="color:#222">
+                    <legend align="center">...Fill The Form Below...</legend>
+                </fieldset>
+                    <br>
+                
+                
+                 <div class="item form-group row">
+                    <label for="name" class="col-md-3 col-form-label">Student's Name:<span style="color: red;">*</span></label>
                          <div class="col-md-9">
                              <input required type="text" class="form-control" id="name" name="name" value="{{user.name}}" placeholder="As Registered in college">
                          </div>
                  </div>
     
     
-                  <div class="form-group row">
-                    <label for="emailid" class="col-md-3 col-form-label">Email Id:</label>
+                  <div class="item form-group row">
+                    <label for="emailid" class="col-md-3 col-form-label">Email Id:<span style="color: red;">*</span></label>
                     <div class="col-md-9">
-                        <input type="email" required class="form-control" name="emailid" value="{{user.email}}" id="emailid" placeholder="Email">
+                        <input type="email" required class="form-control" name="emailid" value="{{user.email}}" id="emailid" placeholder="Email" readonly >
                     </div>
                  </div>
                  
-                 <div class="form-group row">
-                    <label for="roll-no" class="col-md-3 col-form-label">Roll No:</label>
-                    <div class="col-md-3">
+                 <div class="item form-group row">
+                    <label for="roll-no" class="col-md-3 col-form-label">Roll No:<span style="color: red;">*</span></label>
+                    <div class="item col-md-9">
                        <input required type="text" class="form-control" id="roll-no" name="roll-no" placeholder="Roll Number" value="{{user.roll_no}}">
                    </div>
                  </div>
                    {% if msg == 'notpaid' %}
-                   <div class="form-group row">
-                    <label for="course" class="col-md-3 col-form-label">Course:</label>
-                    <div class="col-md-3">
+                   <div class="item form-group row">
+                    <label for="course" class="col-md-3 col-form-label">Course:<span style="color: red;">*</span></label>
+                    <div class="item col-md-9">
                        <select class="form-control" name="course" id="course" onchange="yrrlist()">
                            <option>BCA</option>
                            <option>BCom</option>
@@ -70,10 +94,11 @@
                        </select>
                     </div>
                     
+                    
                 </div>
-                <div class="form-group row">
-                    <label for="year" class="col-md-3 col-form-label">Year:</label>
-                    <div class="col-md-3">
+                <div class="item form-group row">
+                    <label for="year" class="col-md-3 col-form-label">Year:<span style="color: red;">*</span></label>
+                    <div class="item col-md-3">
                        <select class="form-control" name="year" id="year" onchange="yrrlist()">
                            <option>1</option>
                            <option>2</option>
@@ -82,12 +107,12 @@
                         </select>
                     </div>
                     <label for="fees" class="col-md-3 col-form-label">Fees:</label>
-                    <div id="fees">
+                    <div class="item col-md-3" id="fees">
                     </div>
                 </div>
                 
                 <div class="row" id="instalist">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-6 col-13">
                         
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input"
@@ -102,18 +127,11 @@
                 
                 </div>
                 
-                <div class="form-group col-md-4" style="display: none;" id="installmtlist">
-                    <label id="instalment">
-
-                      installment 
-
-                    </label>
-
-                </div>
                 
                </div>
-               {% else %}
-                    <div class="row">
+
+               {% elif msg == "halfpaid" %}
+                    <div class="row item">
                         <div class="form-group col-6">
                             <div class="2instament">
                                 <input type="checkbox" class="form-check-input ml-2"
@@ -123,21 +141,20 @@
                             
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-6" id="cylabel" style="display: none;">
-                            <label>Course:</label>
-                            <input type="text" id="course" name="course" value="{{user.course}}">
+                    <div class="row item">
+                        <div class="form-group col-md-6" id="ccourse" style="display: none;">
+                            <label class="col-form-label">Course:</label>
+                            <input class="item form-control" type="text" id="cc" name="course" value="{{user.course}}">
                         </div>
-                        <div class="form-group col-md-6" id="cy" style="display: none;">
-                            <label>Year:</label>
-                            <input type="text" id="year" name="year" value="{{user.year}}">
+                        <div class="form-group col-md-6 item" id="cy" style="display: none;">
+                            <label class="col-form-label">Year:</label>
+                            <input class="form-control" type="text" id="cyear" name="year" value="{{user.year}}">
                         </div>
                     </div>
-                    <div class="row">
-                        <label style="display: none;" for="hfee" id="hfeelabel" class="col-md-3 col-form-label">Fees:</label>
-                        <div>
-                        </div>
-                            <input type="text" name="amt" id="amt" style="display: none;" value="{{user.amount_paid}}">
+                    <div class="row item">
+                        <label style="display: none;" for="hfee" id="hfeelabel" class="col-md-3 col-form-label item">Fees:</label>
+                       
+                            <input type="text" name="amt" id="amt" style="display: none;" class="form-control">
                         
                         </div>
                     
@@ -147,7 +164,7 @@
 
                 </div>
              <div class="form-group row">
-                 <div class="offset-md-2 col-md-10">
+                 <div class="item offset-md-2 col-md-12 col-12">
                      <button type="submit" class="btn btn-primary">
                          Pay
                      </button>
@@ -155,12 +172,33 @@
              </div>
              {% csrf_token %}
              </form>
-        
-          <div class="col-12 col-md">
-         </div>
+        </div>
+    </div>
+ 
+{% if msg == "fullpaid" %}
+<div>
+
+
+<!---Pop Up div startssss---------------------------------------------------->
+<div class="conainer">
+    <div class="row">
+        <div id="popup" class="col-11 col-md-4">
+            <br>
+            <h2>You have already paid fees</h2>
+            <br>
+            <hr>
+            <a href="homepage" onclick="toggle()">Close</a>          
+        </div>
+    </div>
 </div>
-{% else %}
-    <p>you have paid fee</p>
+<script>
+    var blur=document.getElementById('blur')
+    blur.classList.toggle('active')
+    var popup=document.getElementById('popup')
+    popup.classList.toggle('active')
+</script>
+</div>
+    
 {% endif %}
 <script
  src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -211,43 +249,51 @@
 
     function listinstallment(obj){
         var ilabel=document.getElementById('installmtlabel');
-        var ilist=document.getElementById('installmtlist');
         var h=document.getElementById('half');
 
         if(obj.checked==1){
         alert("CHECKED");
            
             h.value="half";
-            ilist.style.display="initial";
+            
             installlist()
 
         } else{
             alert("not checked");
             h.value="";
-            ilist.style.display="none";
             iheader.style.display="none";
          }
     }
     function listhinstallment(obj){
-        var clabel=document.getElementById("cylabel");
+        var ccource=document.getElementById("ccourse");
+        var c=document.getElementById("cc");
+        var y=document.getElementById("cyear")
         var cy=document.getElementById("cy");
         var hfee=document.getElementById("amt");
         var hfeelbl=document.getElementById("hfeelabel");
         var h=document.getElementById('half');
         if(obj.checked==1){
             h.value="half";
-            clabel.style.display="initial";
+            ccource.style.display="initial";
             cy.style.display="initial";
             hfee.style.display="initial";
             hfeelbl.style.display="initial";
-
+            for(let i=0; i<back_data.length;i++){
+                if(back_data[i].course.toUpperCase()==c.value.toUpperCase() && back_data[i].year==y.value){
+                    hfee.textContent=back_data[i].fee/2;
+                    hfee.value=back_data[i].fee/2;
+                    
+                }
+            
+            }
         }
         else{
             h.value=" ";
-            clabel.style.display="none";
+            ccource.style.display="none";
             cy.style.display="none";
             hfee.style.display="none";
             hfeelbl.style.display="none";
+            amt.value=0;
         }
 
     }

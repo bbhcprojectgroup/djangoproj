@@ -4,14 +4,10 @@
 }
 #header
 {
-    background-image: url(../images/college.jpeg);
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
+    background:#000;
 }
 body{
-    background-image: url(../images/color.jpg);
-    height: 122vh;
+    background-color:#001923;
     background-size: cover;
     background-position: center;
 	opacity: 1;
@@ -30,6 +26,7 @@ nav .fa-bars
     float:right;
     color:floralwhite!important;
     clear: right;
+	background: black;
 }
 .log-text{
 
@@ -77,12 +74,14 @@ nav .fa-bars
     box-shadow: 0 0 20px 7px rgba(0,0,0,0.2);
 }
 .footer{
-	background-color: #888;
+	background-color:rgb(58, 53, 53);
 	color:floralwhite;
 	margin:0px auto;
 	padding:20px 0px 0px 0px;
 	top: 20%;
 	z-index: 1000;
+	line-height: 3vh;
+	font-size: large;
 }
 
 .feedback,.acadform{
@@ -117,7 +116,7 @@ nav .fa-bars
 	height: 400px;
 	background: linear-gradient(#e91e63,#2196f3);
 	border-radius: 50%;
-	transform: translate(600px,-340px);
+	transform: translate(500px,-310px);
 }
 .feedmsg{
 	font-family: 'Times New Roman', Times, serif;
@@ -234,4 +233,9 @@ textarea{
 }
 .card-body{
     background:rgba(94, 89, 89, 0.2);
+}
+.quicklinks li a{
+	text-decoration: none;
+	color: floralwhite;
+
 }

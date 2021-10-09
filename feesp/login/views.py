@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from typing import cast
+import random,string
+from twilio.rest import Client
 from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
-from login.models import Account
+from login.models import Account,setCllegeInfo
 from django.utils import timezone
 from django.template import RequestContext
 from django.core.mail import send_mail, BadHeaderError
@@ -16,11 +18,23 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.views.decorators.csrf import requires_csrf_token
 from django.contrib.auth.decorators import login_required
+from examfee.models import site_settings
+from feesp import settings
+import json
+from django.utils.dateparse import parse_date,parse_time
+from datetime import timedelta,datetime
+import dateutil.parser
+from acdfee.models import set_concession
 #from django.contrib.admin.forms import AdminAuthenticationForm
+
+
 
 # Create your views here.
 def home(request):
-    return render(request,'home.html')
+    site=site_settings.objects.get()
+    conc=set_concession.objects.all()
+    cllegeInfo=setCllegeInfo.objects.get()
+    return render(request,'home.html',{'context':site,'conc1':conc[0].percentage_concession,'conc2':conc[1].percentage_concession,'conc3':conc[2].percentage_concession,'clg':cllegeInfo})
 
 def handler404(request, *args, **argv):
     response = render(request,'404.html', {})
@@ -90,11 +104,95 @@ def register(request):
              phone=request.POST['phone']
              password1=encrypt(request.POST['password'])
              print(password1)
-             user = Account.objects.create_user(username=username, phone=phone, email=email, password=password1)
+             """user = Account.objects.create_user(username=username, phone=phone, email=email, password=password1)
              user.save()
              #request.session['username'] = user.username
              messages.success(request, 'user name created')   
-    return render(request,'base.html')
+    return render(request,'base.html')"""
+             otp=''.join(random.choice(string.digits) for x in range(4))
+             try:
+                mail='your otp is to visit '+otp+' Apply Procedures'
+            
+                send_mail('One Time Password', mail, 'feepayportal@gmail.com' ,[email], fail_silently=False)
+             except gaierror:
+                print('oops')
+             
+             
+             client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+
+             message = client.messages.create(
+                                        messaging_service_sid='MG7b8f86e6946c32ae3229d0859b794d89', 
+                                        body=f'Hi, your feepay otp is {otp}. Please enter this otp within 1 minute',
+                                        to="+91"+phone 
+                                        #to="+916362037635"
+                                    )
+             print(message.sid)
+             request.session['username']=username
+             request.session['password1']=password1
+             request.session['phone']=phone
+             request.session['email']=email
+             request.session['otp']=otp
+             request.session['time']=str(datetime.now().time())
+        
+        
+             return render(request, 'otp.html',{'phone':phone[-3:]})
+       
+    return render(request, 'base.html')
+
+def resend(request):
+    phone=request.session['phone']
+    email=request.session['email']
+    otp=''.join(random.choice(string.digits) for x in range(4))
+    print(otp)
+    try:
+        mail='your otp is to visit '+otp+' Apply Procedures'
+        send_mail('One Time Password', mail, 'feepayportal@gmail.com' ,[email], fail_silently=False)
+    except gaierror:
+                print('oops')
+    client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+    message = client.messages.create(
+                                        messaging_service_sid='MG7b8f86e6946c32ae3229d0859b794d89', 
+                                        body=f'Hi, your feepay otp is {otp}. Please enter this otp within 1 minute',
+                                        to="+91"+phone 
+                                        #to="+916362037635
+
+                                    )
+    print(message.sid)
+    request.session['otp']=otp
+    request.session['time']=str(datetime.now().time())
+    return render(request, 'otp.html',{'phone':phone[-3:]})
+    
+
+
+def verification(request):
+    if request.method=='POST':
+        first=request.POST['first']
+        second=request.POST['second']
+        third=request.POST['third']
+        fourth=request.POST['fourth']
+        user_otp=first+second+third+fourth
+        username=request.session['username']
+        phone=request.session['phone']
+        password1=request.session['password1']
+        email=request.session['email']
+        otp=request.session['otp']
+        print(request.session['time'])
+        #otptime=datetime.strptime(request.session['time'], '%H:%M:%S').time()
+        otptime=dateutil.parser.parse(request.session['time'])
+        print(otptime)
+        
+        if(datetime.now() <= otptime+ timedelta(minutes=1)):
+            if user_otp==otp:
+                user_obj=Account.objects.create_user(username=username, phone=phone, email=email, password=password1)
+                user_obj.save()
+                messages.success(request, 'user name created')   
+                return render(request,'base.html')
+            else:
+                wrong_otp="Oops!! seems like your OTP is incorrect...please check the OTP"
+                return render(request, 'otp.html',{'wrong_otp':wrong_otp})
+        else:
+                wrong_otp="Time expired!!!"
+                return render(request, 'otp.html',{'Timeup':wrong_otp})
               
 
 def log_in(request):
@@ -113,7 +211,11 @@ def log_in(request):
                 login(request, user)
                 user.last_login = timezone.now()
                 user.save(update_fields=['last_login'])
-                return render(request,'home.html')
+                site=site_settings.objects.get()
+                conc=set_concession.objects.all()
+                cllegeInfo=setCllegeInfo.objects.get()
+                return render(request,'home.html',{'context':site,'conc1':conc[0].percentage_concession,'conc2':conc[1].percentage_concession,'conc3':conc[2].percentage_concession,'clg':cllegeInfo})
+
             else:
                 messages.error(request, 'Invalid password')
               
@@ -131,6 +233,7 @@ def about_us(request):
 
 @requires_csrf_token   
 def password_reset_request(request):
+
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
 		if password_reset_form.is_valid():
@@ -138,10 +241,7 @@ def password_reset_request(request):
             
 			associated_users = Account.objects.filter(Q(email=data))
 			if associated_users.exists():
-                
-                #print("sp")
-                
-
+     
 				for user in associated_users:
                   
 					    subject = "Password Reset Requested"
@@ -169,5 +269,18 @@ def password_reset_request(request):
 def log_out(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
-    return render(request,'base.html')
+    site=site_settings.objects.get()
+    conc=set_concession.objects.all()
+    cllegeInfo=setCllegeInfo.objects.get()
+    return render(request,'home.html',{'context':site,'conc1':conc[0].percentage_concession,'conc2':conc[1].percentage_concession,'conc3':conc[2].percentage_concession,'clg':cllegeInfo})
+
+          
+
+
+
+
+
+
+
+
           

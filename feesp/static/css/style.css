@@ -267,7 +267,10 @@ span {
     transform: translateX(90%);
   }
 }
-
+#regtext,#logtext{
+  font-family:'Berkshire Swash', cursive; 
+  letter-spacing: 2px;
+}
 section {
   display: flex;
   justify-content: center;

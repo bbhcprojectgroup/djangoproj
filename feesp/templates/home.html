@@ -16,9 +16,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Berkshire+Swash&family=Carter+One&family=Cinzel+Decorative:wght@700&family=Poppins:wght@100&display=swap&family=Merienda&display=swap" rel="stylesheet">
-    <title>home</title>
+    <title>Fee Pay</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
 </head>
-<body>
+<body onload="loadfun()">
+    <div id="loader" style="position:fixed; width:100%; height:100vh; background:#000 url('../static/images/logo.jpg') no-repeat center; z-index:99999;">
+
+    </div>
     <section id="header" class="about">
         <nav class="navbar navbar-expand-lg navbar-dark" >
             <a class="navbar-brand" href="#"><img src="{% static 'images/logo.jpg' %}" height="50" width="51" alt="logo"><span style="color: goldenrod;">FEEPAY</span></a>
@@ -37,8 +41,8 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="/feedback"><span class="fa fa-pen-square fa-lg mr-1"></span>FEEDBACK</a>
                 </li>
-                <span class="navbar-text log-text ml-auto">
-                  <a href="/log_out"><span class="fa fa-sign-out"></span>LOG OUT</a>
+                <span  class="nav-item active">
+                  <a class="nav-link" href="/log_out"><span class="fa fa-sign-out"></span>LOG OUT</a>
                 </span>
                 {% else %}
                 <li class="nav-item active">
@@ -57,7 +61,13 @@
               </ul>
               </div>
           </nav>
-          
+         
+          <div>
+            {% if context.siteEnable == True %}
+            
+              <marquee><a class="glow" href="#expay">The examination fee payment site is active</a></marquee>
+            {% endif %}
+          </div>
           <div id="carousel" class="carousel slide" data-ride="carousel">
             
             <div class="carousel-controls">
@@ -74,11 +84,12 @@
                   <div class="container">
                     
                     <section id="welcome" class="wow bounceInUp">
+                      
                       <div class="container">
                         <div data-wow-iteration="3" class="welcome text-center wow " id="wel1">
-                          <h1>Welcome to Dr B B Hegde First Grade College</h1>
+                          <h1>Welcome to Dr. B. B. Hegde First Grade College, Kundapura</h1>
                           <h2> Fees Payment Portal</h2>
-                          <p>Pay academic fees and Semester examination fees online.</p>
+                          <p>Pay Academic Fees and Semester Examination Fees Online</p>
                         </div>
                       </div>
                     </section>
@@ -140,7 +151,7 @@
           
     </section>
     <!------------------------welcome text-->
-  
+   
       <!-----Accordion-->
       <section class="background" style= "opacity:rgba(0,0,0,0.5);">
         <section id="Info" class="photo">
@@ -156,7 +167,7 @@
                   
                   <button class="btn btn-link acc_header" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
                           
-                   B M Sukumar Shetty(PRESIDENT)
+                   {{clg.president_name}} (PRESIDENT)<i class="fa fa-caret-down fa-lg"></i>
                   
                   </button>
               
@@ -169,11 +180,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
-                                <img class="d-block img-fluid" src="{% static 'images/sukumar-sir.jpeg' %}" alt="college">
+                                <img class="d-block img-fluid" src="../media/{{clg.president_image}}" alt="college">
                             </div>
                             <div class="col-12 col-md-9 text-center wow fadeInDown">
                           
-                                <p>Sri B M Sukumar Shetty MLA, Byndoor constituency and president of coodapur education Society. Potentially managing the institution with the vision of providing education to each and every desirous student. Marching with the pursuit of educating the poorest of the poor, he is successfully managing the institution in most disciplined way.</p>
+                                <p>{{clg.president_info}}</p>
                             </div>
                           
                         </div>
@@ -187,7 +198,7 @@
               <div class="card-header" id="headingTwo">
                 <h5 class="mb-0">
                   <button class="btn btn-link collapsed acc_header" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Prof Umesh Shetty (PRINCIPAL)
+                    {{clg.principal_name}} (PRINCIPAL)<i class="fa fa-caret-left fa-lg"></i>
                   </button>
                 </h5>
               </div>
@@ -196,10 +207,10 @@
                   <div class="container">
                     <div class="row">
                         <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
-                            <img class="d-block img-fluid" src="{% static 'images/principal.jpeg' %}" alt="college">
+                            <img class="d-block img-fluid" src="../media/{{clg.principal_image}}" alt="college">
                         </div>
                         <div class="col-12 col-md-9 text-center wow fadeInDown">
-                            <p>Served as Faculty for 23 years at Sri Bhuvanendra College, Karkala, Dr.NSAM First Grade College, Nitte, Alva’s College, Moodubidire and had taken the following major responsibilities; Ex. Dean- Faculty of Commerce Ex. HOD- Dept. of Commerce Member- NAAC Steering Committee &IQAC Ex. NSS Programme Officer Executive Editor of Dept. News Bulletins Ex. Chief Coordinator of the College days,Talents days, Farewell programmes etc. Ex. Coordinator of CA-CPT coaching programme Ex. Coordinator of HR&ER certificate course Ex. Chief Superintendent of Mangalore University Examinations Ex. Chief Coordinator of Inter College Mangalore University level Management Fest</p>
+                            <p>{{clg.principal_info}}</p>
                         </div>
                     </div>
                 </div>
@@ -211,7 +222,7 @@
               <div class="card-header" id="headingThree">
                 <h5 class="mb-0">
                   <button class="btn btn-link collapsed acc_header" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Chethan Shetty (VICE-PRINCIPAL)
+                    {{clg.vice_principal_name}}(VICE-PRINCIPAL)<i class="fa fa-caret-left fa-lg"></i>
                   </button>
                 </h5>
               </div>
@@ -220,10 +231,10 @@
                   <div class="container">
                     <div class="row">
                         <div class="col-12 col-md-3 align-self-center wow fadeInLeft">
-                            <img class="d-block img-fluid" src="{% static 'images/viceprinci.jpeg' %}" alt="college">
+                            <img class="d-block img-fluid" src="../media/{{clg.vice_principal_image}}" alt="college">
                         </div>
                         <div class="col-12 col-md-9 text-center wow fadeInDown">
-                            <p>Served as HOD of Kannada and NSS Officer at P.A. First Grade College and Ramakrishna College, Mangalore. In charge Principal at Dr. B. B. Hegde First Grade college from 1st July, 2018 to 9th June, 2019. Executive Editor of College Magazine ‘Shikhara’. Executive Editor of College Wall Magazine 'Dhwani’ Ex. Chief Superintendent of Mangalore University Examinations Ex. Chief Coordinator of the College days, Talents Day, Farewell Functions, PTA Meeting etc. Member of College Governing Council. Ex. Chief Coordinator of Inter Collegiate Mangalore University Literary and Cultural Competitions. Member of IQAC, Anti Ragging Committee, Staff Advisory Council, Discipline Committee, Sports Committee, N.S.S. Advisory Committee etc.</p>
+                            <p>{{clg.vice_principal_info}}</p>
                         </div>
                     </div>
                 </div>
@@ -243,7 +254,7 @@
             <div class="col-md-6 text-center wow fadeInLeft">
               <img src="{% static 'images/academicfee.jpg' %}" width="300" height="300" class="img-fluid">
             </div>
-            <div class="col-md-6 pay wow fadeInRight" id="border">
+            <div class="col-md-6 pay wow fadeInRight">
               {% if user.is_authenticated %}
               <h3><u>Academic Fees Payment</u></h3>
               <p class="text-justify "><b>In this Fees Payment system user is provided Academic Fees Form, by filling this form details, user can make payment and also gain the Academic fees details like amount for 
@@ -260,11 +271,101 @@
               {% endif %}
             </div>
           </div>
+          <div class="row concession" style="background-color: rgb(0, 0, 10); color:antiquewhite">
+            <div class="col-12 order-md-first wow fadeInLeft">
+              <h3>APPLY FOR CONCESSION.........</h3>
+              <p>
+                The students can apply for concession over their fees. There are three types of concession available for the students. If eligible you can apply for any one of the following concessions.<br>
+                Upload the required document and after verification, you would receive mail about your concession application and then you can avail the specified concession. After aproval of your concession proceed ahead to pay your academic fees. :-
+                </p>
+                
+               <div class="row justify-content-center">
+                <div class="card col-md-3 col-10" style="justify-content: center;" id="concesion-card">
+                  
+                    <div class="title">Girls student Concession</div>
+                  
+                    <div class="icon">
+                      <i class="fa fa-female"></i>
+                    </div><!--/icon-->
+                  
+                    <div class="features">
+                      <ul>
+                        <li>
+                          <p>
+                            Empowering the girls' education by providing concession of {{conc2}}%<br><br>
+                            <b>Required Document:</b><br>
+                            Scanned copy of Aadhar card or Birth certificate
+      
+                          </p>
+                        </li>
+                      </ul>
+                    </div><!--/features-->
+                </div><!--/card-->
+                
+                <div class="card col-md-4 col-10" id="concesion-card"> 
+                  
+                  <div class="title">Scholarship for 90% and above</div>
+                  <div class="icon">
+                    <i class="fa fa-user-graduate"></i>
+                  </div><!--/icon-->
+
+                  <div class="features">
+                    <ul>
+                      <li>
+                        <p>
+                          If you have scored 90% or above agregate in last year.Then you can avail {{conc1}}% off on your current acamedic year fees.<br><br>
+                          <b>Required Document:</b><br>
+                          Previous year marks card indicating that you have scored above 90% in academics.<br>
+                          One Document containing both the semester's markcard should be uploades.
+    
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div><!--/card-->
+            
+              
+                <div class="card col-md-3 col-10" id="concesion-card">
+                  
+                    <div class="title">SC/ST Concession</div>
+                  
+                    <div class="icon">
+                      <i class="fa fa-users"></i>
+                    </div><!--/icon-->
+                  
+                    <div class="features">
+                      <ul>
+                        <li>
+                          <p>
+                            Students of Scheduled Caste and Scheduled Tribes can avail concession of {{conc3}}%<br><br>
+                            <b>Required Document:</b><br>
+                            Scanned copy of Caste Certificate
+      
+                          </p>
+                        </li>
+                      </ul>
+                    </div><!--/features-->
+                  </div>
+                </div>
+              </div>        
+            <div class="row applybtn"> 
+            <div class="col-md-12">
+              <br><p><span>Note****</span> you can only apply for any one of the above scholarships</p><br>
+                
+              {% if user.is_authenticated %}
+                
+              <p><a href="concssion/"><button type="button" class="btn concession-btn col-9 col-md-5" id="buton"><b>Apply for Concession</b></button></a>
+              </p>
+              {% endif %}
+                
+            </div>
+            </div>   
+          </div>
           <div class="row">
             <div class="col-md-6 text-center order-md-last wow fadeInRight" >
               <img src="{% static 'images/examfee.jpg' %}" height="300" width="300" class="img-fluid">
             </div>
-            <div class="col-md-6 order-md-first pay wow fadeInLeft" id="border">
+            <div class="col-md-6 order-md-first pay wow fadeInLeft" id="expay">
               {% if user.is_authenticated %}
               <h3><u>Examination Fees Payment</u></h3>
               <p class="text-justify "><b>In the Examination Fees Payment section, Exam Fees Form is provided. Do fill it carefully entering all the necessary details accurately. In the traditonal system students had to  get the exam-fees form 
@@ -289,37 +390,75 @@
         <div class="container">
             <div class="row">             
             
-                <div class="col-12 col-sm-6 address">
-                  <h5>Contact Us...</h5>
+                <div class="col-12 col-md-4 address">
+                  <h5>VISIT Us...</h5>
                   <address>
+                    <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=247&amp;height=99&amp;hl=en&amp;q=Dr.B.B.Hegde First Grade College,Kundapura<br>                   [A Unit of Coondapur Education Society (R).Kundapura]                    Vishalakshi B.Hegde Campus,                    Kundapura, Udupi Dist,                    Karnataka-576201&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://www.fnfgo.com/">FNF Mods</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:99px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:99px;}.gmap_iframe {height:99px!important;}</style></div>
                   Dr.B.B.Hegde First Grade College,Kundapura<br>
                   [A Unit of Coondapur Education Society (R).Kundapura]
                    Vishalakshi B.Hegde Campus,
                    Kundapura, Udupi Dist,
                    Karnataka-576201<br>
-                      <i class="fa fa-phone fa-lg"></i>: 08254-235589<br>
-                      <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link" style="color: aliceblue;">bbhegdecollegekundapur@rediffmail.com</a>
+                     
                    </address>
                 </div>
-                <div class="col-12 col-sm-6 align-self-center">
-                    <div class="text-center">
-                        <a class="btn btn-social-icon btn-google mr-3" href="https://bbhegdecollege.in/" target="blank"><i class="fa fa-google-plus fa-lg"></i> </a>
-                        <a class="btn btn-social-icon btn-facebook mr-3" href="https://www.facebook.com/Dr-BB-Hegde-First-Grade-College-BBHC-878478628896016/" target="blank"><i class="fa fa-facebook fa-lg"></i> </a>
-                       <a class="btn btn-social-icon btn-google mr-3" href="https://youtube.com/channel/UC_YbvrqDgf_CS500hPEt2rw" target="blank"><i class="fa fa-youtube fa-lg"></i> </a>
-                        <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/dr.bbhckundapura/?utm_medium=copy_link" target="blank"><i class="fa fa-instagram fa-lg"></i> </a>
-                    </div>
+                <div class="col-12 col-md-3">
+                        <h5>QUICK LINKS</h5>
+                        <ul style="list-style-type: none;" class="quicklinks">
+                          <li><a href="/">HOME</a></li>
+                          <li><a href="/index">ABOUT</a></li>
+                          <li><a href="/feedback">FEEDBACK</a></li>
+                          <li><a href="/payexam">EXAM FEE</a></li>
+                          <li><a href="/clgform">COLLEGE FEE</a></li>
+                          <li><a href="concssion/">APPLY CONCESSION</a></li>
+
+                        </ul>
+
+                 </div>
+
+                    
+                <div class="col-12 col-md-5">
+                  <h5>CONNECT WITH US...</h5>
+                  <i class="fa fa-phone fa-lg"></i><a style="color: white;" href="tel:08254-235589">Call us at : 08254-235589</a><br>
+                  <i class="fa fa-envelope fa-lg"></i>: <a href="mailto:bbhegdecollegekundapur@rediffmail.com" class="link" style="color: aliceblue;">bbhegdecollegekundapur@rediffmail.com</a>
+                  <br>
+                  <a class="btn btn-social-icon btn-google mr-3" href="https://bbhegdecollege.in/" target="blank"><i class="fa fa-google-plus fa-lg"></i> </a>
+                  
+                  <a class="btn btn-social-icon btn-facebook mr-3" href="https://www.facebook.com/Dr-BB-Hegde-First-Grade-College-BBHC-878478628896016/" target="blank"><i class="fa fa-facebook fa-lg"></i> </a>
+
+                 <a class="btn btn-social-icon btn-google mr-3" href="https://youtube.com/channel/UC_YbvrqDgf_CS500hPEt2rw" target="blank"><i class="fa fa-youtube fa-lg"></i> </a>
+                  <a class="btn btn-social-icon btn-instagram" href="https://www.instagram.com/dr.bbhckundapura/?utm_medium=copy_link" target="blank"><i class="fa fa-instagram fa-lg"></i> </a>
+
+
                 </div>
            </div>
         </div>
     </footer>
+    {% if messages %}
+               
+                    {% for message in messages %}
+                         <script>
+                            $(document).ready(function () {
+                            alert('{{message}}');
+                        });
+                        </script>
+                    {% endfor %}
+               
+    {% endif %} 
       <!----------------------Animation------------------->
       <script src="{% static 'js/wow.min.js' %}"></script>
+      <script src="{% static 'js/loader.js' %}"></script>
       <script>
         new WOW().init();
       </script>
       <script>
         $(document).ready(function(){
           $('#carousel').carousel({interval:false});
+          $('.collapse').on('shown.bs.collapse', function() { 
+            $(this).parent().find('.fa-caret-left').removeClass('fa-caret-left').addClass('fa-caret-down');
+          }).on('hidden.bs.collapse', function() { 
+            $(this).parent().find('.fa-caret-down').removeClass('fa-caret-down').addClass('fa-caret-left');
+          })
           
         });
 

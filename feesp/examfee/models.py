@@ -3,17 +3,26 @@ from login.models import Account
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils import timezone
 
+
 # Create your models here.
+
+COURSE_LIST = (
+   ('BCA', 'BCA'),
+   ('BCom', 'BCom'),
+   ('BSc', 'BSc'),
+   ('BBA', 'BBA')
+)
+
 class sublist(models.Model):
     sub_code=models.CharField(max_length=30,primary_key=True)
-    subject=models.CharField(max_length=30)
-    course=models.CharField(max_length=10)
+    subject=models.CharField(max_length=200)
+    course = models.CharField(max_length=10, choices=COURSE_LIST) 
     sem=models.IntegerField(default=1,
         validators=[MaxValueValidator(6), MinValueValidator(1)])
     optional=models.BooleanField(default=False)
     fee=models.IntegerField()
     def __str__(self):
-        return self.subject
+        return self.sub_code
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
@@ -25,7 +34,7 @@ class sublist(models.Model):
         verbose_name = 'Subject List'
     
 class examfeepaid(models.Model):
-    email=models.EmailField(verbose_name="email",max_length=60, unique=True)
+    email=models.EmailField(verbose_name="email",max_length=200, unique=True)
     name=models.CharField(max_length=30, default="xyz")
     roll_no=models.CharField(max_length=10)
     register_no=models.CharField(max_length=10, default="m")
@@ -38,6 +47,9 @@ class examfeepaid(models.Model):
     date_of_fee=models.DateTimeField(default=timezone.now)
     month=models.CharField(max_length=10,blank=True)
     college_code=models.CharField(max_length=10,blank=True)
+    transaction_id=models.CharField(max_length=100,null=True, blank=True)
+
+    
 
     def __str__(self):
         return self.register_no

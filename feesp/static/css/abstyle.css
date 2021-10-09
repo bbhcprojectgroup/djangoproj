@@ -1,74 +1,110 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: Century Gothic;
-    background: url("../images/23.jpg")no-repeat;
-    background-size:cover;
-    background-position: center;
-}
-.header{
-    height: 100vh;
+
+/*.header{
+    height:100vh;
     width: 100%;
+    
+
+}*/
+#header
+{
+    background:#000;
+}
+body{
+    width:100%;
+    
+    /*background-repeat: no-repeat;*/
+    color:#fff;
    
+    background:url("../images/laptop.jpg")no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    
+}
+.footer{
+	background-color:rgb(58, 53, 53);
+	color:floralwhite;
+	margin:0px auto;
+	padding:20px 0px 0px 0px;
+	top: 20%;
+	z-index: 1000;
+	line-height: 3vh;
+	font-size: large;
+}
+#about-us{
+    background:rgba(0,0, 0,0.6);
+    /*background-size: cover;*/
+    backdrop-filter: blur(90px);
+    box-shadow: 0 25px 45px 0 rgba(0,0,0,0.4);
+    
+    /*position:relative;
+    width: 100%;  
+    top: 10%;*/
+    font-family: Century Gothic;
+    
+}
+
+#about-us h1,h2,h3{
+    color: #ffffff;
+    position: center;
+    font-size: 40px;
 
 }
-.log-text{
+#about-us p{
+    color: #ffffff;
+    position: center;
+    font-size: 18px;
+
+}
+.navs .log-text{
 
         float:right;
         clear:right;
     }
 
-.navbar{
+.navs .navbar{
     background-color: black;
 }
-.navbar-toggler{
+.navs .navbar-toggler{
     border:none!important;
     outline:none!important;
 }
-nav .fa-bars
+.navs .nav .fa-bars
 {
     color:#fff;
     font-size:26px;
 }
-.navbar-nav
+.navs .navbar-nav
 {
     float:right;
     color:floralwhite!important;
     clear: right;
     
 }
-.log-text{
+.navs .log-text{
 
     float:right;
     clear:right;
 }
-.navbar-brand img{
+.navs .navbar-brand img{
     margin-left:30px;
 
 }
-.main{
-    width: 50%;
-    background: rgba(7, 7, 7, 0.7);
-    padding: 70px;
-    text-align: left;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    color: #ffffff;
-    transform: translate(-50%,-50%);  
-    backdrop-filter: blur(25px);
+
+.abt_us #img1,#img2, #img3{
+    width: 180px;
+    height: 180px;
+    position: center!important;
+    border-radius: 50%;
+    
+     border :4px solid white!important; 
+}
+.abt_us h2,h3{
+    color:floralwhite!important;
+}
+.quicklinks li a{
+	text-decoration: none;
+	color: floralwhite;
+
 }
 
-@media(max-width: 767px){
-        .main{
-           
-            text-align: left;
-            color: #ffffff;
-            width: 57.3vh;
-            clear: both;
-            top:60%;
-            padding: 50px;
-            font-size: 12px;
-        }
-
-    }

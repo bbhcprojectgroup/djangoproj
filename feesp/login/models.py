@@ -40,6 +40,8 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def __str__(self):
+        return self.email
 
 class Account(AbstractBaseUser):
     email=models.EmailField(verbose_name="email",max_length=60, unique=True)
@@ -68,4 +70,33 @@ class Account(AbstractBaseUser):
     class Meta:
         db_table = 'account_account'
         verbose_name = 'Account List'
+
+
+class setCllegeInfo(models.Model):
+    president_name=models.CharField(max_length=30)
+    president_info=models.TextField()
+    president_image=models.ImageField(upload_to='cllegeInfo/',null=True,blank=True)
+    principal_name=models.CharField(max_length=30,null=True,blank=True)
+    principal_info=models.TextField(null=True,blank=True)
+    principal_image=models.ImageField(upload_to='cllegeInfo/',null=True,blank=True)
+    vice_principal_name=models.CharField(max_length=30,null=True,blank=True)
+    vice_principal_info=models.TextField(null=True,blank=True)
+    vice_principal_image=models.ImageField(upload_to='cllegeInfo/',null=True,blank=True)
+    principal_sign=models.ImageField(upload_to='cllegeInfo/',null=True,blank=True)
+    clerk_sign=models.ImageField(upload_to='cllegeInfo/',null=True,blank=True)
+    
+
+
+    class Meta:
+        db_table = 'CllegeInfo'
+        verbose_name = 'College Information'
+
+    def __str__(self):
+        return "True"
+
+    def has_perm(self, perm, obj=None): 
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return True
         

@@ -6,6 +6,7 @@
     
 
     <title>Exam Form</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
     <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,66 +17,69 @@
     crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       
+    <link href="https://fonts.googleapis.com/css2?family=Gabriela&family=Arvo&display=swap" rel="stylesheet">
     <link href="{% static 'css/examstyles.css' %}" rel="stylesheet">
 </head>
 
 <body onload="sublist()" >
+   
+   
     <header class="fixed-top form-head">
         <div class="container-fluid">
             <img src="{% static 'images/logo.jpg' %}" alt="logo" height="60" width="61" class="ml-2">
             <span style="color: goldenrod;">FEEPAY</span>
         <a href="/homepage" style=" color:floralwhite;
-        background-color: transparent;
+        background-color: black;
         text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
         </div>
         
     </header>
     
-    <div class="container exam-form">
+    
+    <div class="container exam-form containers" id="blur">
         
         <div class="row justify-content-center">
             <div class="col-12 col-md-10">
-               <h3 style="text-decoration: underline;">Fill the Form below</h3>
+               <h3 style="align-items: center">.............Fill the Form below.................</h3>
             </div>
              <div class="col-12 col-md-10">
                  <form method="POST" onsubmit="sendsub()">
                     {% csrf_token %}
                      <div class="form-group row">
-                         <label for="name" class="col-md-3 col-form-label">Student's Name:</label>
+                         <label for="name" class="col-md-3 col-form-label">Student's Name:<span style="color: red;">*</span></label>
                          <div class="col-md-9">
                              <input type="text" class="form-control" id="name" name="studname" placeholder="As Registered in college" required>
                          </div>
                      </div>
             
                      <div class="form-group row">
-                        <label for="emailid" class="col-md-3 col-form-label">Email Id:</label>
+                        <label for="emailid" class="col-md-3 col-form-label">Email Id:<span style="color: red;">*</span></label>
                         <div class="col-md-9">
-                            <input type="email" class="form-control" id="emailid" placeholder="Email" name="emailid" required>
+                            <input readonly value="{{user.email}}" type="email" class="form-control" id="emailid" placeholder="Email" name="emailid" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="regNo" class="col-md-3 col-form-label">Register Number</label>
+                        <label for="regNo" class="col-md-3 col-form-label">Register Number:<span style="color: red;">*</span></label>
                         <div class="col-md-3">
                             <input type="text" class="form-control" id="regNo" name="regNo" placeholder="Register No" required>
                         </div>
-                        <label for="month" class="col-md-3 col-form-label">Month and Year of Examination:</label>
+                        <label for="month" class="col-md-3 col-form-label">Month and Year of Examination:<span style="color: red;">*</span></label>
                         <div class="col-md-3">
                             <input type="month" class="form-control" id="month" name="month" required>
                         </div>
                     </div>
                       <div class="form-group row">
-                         <label for="clgcode" class="col-md-3 col-form-label">College Code:</label>
+                         <label for="clgcode" class="col-md-3 col-form-label">College Code:<span style="color: red;">*</span></label>
                          <div class="col-md-3">
                              <input type="text" class="form-control" id="clgCode" name="clgCode" placeholder="College Code" required>
                          </div>
-                         <label for="roll-no" class="col-md-3 col-form-label">Roll No:</label>
+                         <label for="roll-no" class="col-md-3 col-form-label">Roll No:<span style="color: red;">*</span></label>
                          <div class="col-md-3">
                             <input type="text" class="form-control" id="roll-no" name="roll-no" placeholder="Roll Number" required>
                         </div>
                      </div>
                      <div class="form-group row">
-                         <label for="course" class="col-md-3 col-form-label">Course:</label>
+                         <label for="course" class="col-md-3 col-form-label">Course:<span style="color: red;">*</span></label>
                          <div class="col-md-3">
                             <select name="course" class="form-control" id="course" onchange="sublist()" >
                                 <option>BCom</option>
@@ -85,7 +89,7 @@
                         
                             </select>
                          </div>
-                         <label for="sem" class="col-md-3 col-form-label">Semester:</label>
+                         <label for="sem" class="col-md-3 col-form-label">Semester:<span style="color: red;">*</span></label>
                          
                          <div class="col-md-3">
                             <select class="form-control" id="sem" onchange="sublist()" name="sem">
@@ -164,8 +168,27 @@
         </div>
  
     </div>
+    {% if paid %}
+    <div class="conainer">
+        <div class="row">
+            <div id="popup" class="col-11 col-md-4">
+                <br>
+                <h2>You have already paid fees</h2>
+                <br>
+                <hr>
+                <a href="homepage" onclick="toggle()">Close</a>          
+            </div>
+        </div>
+    </div>
+    <script>
+        var blur=document.getElementById('blur')
+        blur.classList.toggle('active')
+        var popup=document.getElementById('popup')
+        popup.classList.toggle('active')
+    </script>
+    {% endif %}
     <script
-  s rc="https://code.jquery.com/jquery-3.4.1.min.js"
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
     <script>
@@ -213,7 +236,7 @@
                     
                     console.log(backdata[i]);
                     var d =document.createElement('div');
-                    d.classList.add("form-group","row");
+                    d.classList.add("form-group","row","subs");
                     var l1=document.createElement('label');
                     var l2=document.createElement('label');
                     var l3=document.createElement('label');
@@ -233,7 +256,6 @@
                         d.appendChild(l4);
                         pdiv.appendChild(d);
                        // total=total+data[i].fee;
-                       console.log(selected_sub);
                        selected_sub.push(backdata[i]);
                     }
                     else{
@@ -260,14 +282,14 @@
 
         function update_association(a){
             cur_association=a[a.selectedIndex].value;
-            alert(cur_association);
+         
         }
         function listbacks(obj) {
             blabel=document.getElementById('bckloglabel');
             blist=document.getElementById('bckloglist');
             bheader=document.getElementById('bcklogsubheader');
             if(obj.checked==1){
-            alert("CHECKED");
+        
               
               blabel.style.display='initial';
               blist.style.display='initial';
@@ -275,7 +297,7 @@
               
             }else{
 
-              alert("Not checked"); //when not checked
+        
               blabel.style.display='none';
               blist.style.display='none';
               bheader.style.display='none';
@@ -288,6 +310,7 @@
             var bdiv=document.getElementById('backsub');
             var s=getValue("sem");
             var bs=getValue("bsem");
+        
             if(bs<s){
                 console.log(bs);
                 var c=getValue("course");
@@ -295,7 +318,7 @@
                 if(backdata[i].course==c && backdata[i].sem==bs){
                     console.log(backdata[i]);
                     var d =document.createElement('div');
-                    d.classList.add("form-group","row");
+                    d.classList.add("form-group","row","backsub");
                     var l2=document.createElement('label');
                     var l3=document.createElement('label');
                     var l4=document.createElement('label');
@@ -423,7 +446,7 @@
                     
               }
         
-                 alert(total);
+                
                  //var csrftoken = getCookie('csrftoken');
                  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
                  console.log(csrftoken);
@@ -448,7 +471,7 @@
                     },
                     success: function(result) {
                         window.location.href="exform"
-                        alert('Data Has been saved')
+                  
                     }
                  });
                  console.log(selected_sub);

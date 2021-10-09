@@ -1,9 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
 <head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callback</title>
+    <link rel="icon" href="{% static 'images/flogo.png' %}" type="png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" integrity="sha512-f8mUMCRNrJxPBDzPJx3n+Y5TC5xp6SmStstEfgsDXZJTcxBakoB5hvPLhAfJKa9rCvH+n3xpJ2vQByxLk4WP2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
 </head>
-<body>
-    <h2>Callback Messsage: </h2>                    <br>
+<body style="background-color: black;">
+    <header class="fixed-top form-head">
+        <div class="container-fluid">
+            <img src="{% static 'images/logo.jpg' %}" alt="logo" height="60" width="61" class="ml-2">
+            <span style="color: goldenrod;">FEEPAY</span>
+        <a href="/homepage" style=" color:floralwhite;
+        background-color: black;
+        text-decoration: none;"><span class="fa fa-home fa-lg"></span>HOME</a>
+        </div>
+        
+    </header>
+   <!----- <h2>Callback Messsage: </h2>                    <br>
     <h3> Checksum Verification: {{ message }} </h3> <br>
     MID: {{ MID }}                                  <br>
     TXNID: {{ TXNID }}                              <br>
@@ -20,5 +40,265 @@
     BIN_NAME: {{ BIN_NAME }}                        <br>
     PAYMENTMODE: {{ PAYMENTMODE }}                  <br>
     CHECKSUMHASH: {{ CHECKSUMHASH }}
+    {{RESPMSG}}--->
+   
+    {% if succ == 'True' %}
+    <div class="container">
+        <div class="row">
+            <div class="popup popup-success center col-md-11 col-10">
+                <div class="icon">
+                    <i class="fa fa-check"></i><!-------this is for success----->
+                    <!---<i class="fa fa-exclamation"></i>----this is for failure----->
+                </div>
+                <div class="title">
+                    <h3>Payment successful</h3> 
+                    <span style='font-size:100px;'>&#128525;</span>
+                    <h2>Transaction_ID{{ ORDERID }} </h2>
+                </div>
+                {% if exam == 'True' %}
+                <div class="description">
+                   
+                    Congratulations!!! your payment for examination fees is successful..
+                    
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="/download"> <button class="btn">Download/Print Examination Form</button> </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="/exreceipt"> <button class="btn">Download/Print Receipt</button> </a>
+                        </div>
+                    </div>
+                </div>
+                   
+                    
+                
+             
+                {% else %}
+                <div class="description">
+                   
+                    Congratulations!!! your college fees payment is successfull...
+                    
+                </div>
+              
+                    <a href="/downloadclgreceipt"> <button class="btn">Download/Print Receipt</button> </a>
+               
+                {% endif %}
+            </div>
+           
+        </div>
+    </div>
+        <!----% if exam == 'True' %
+        <div class="row">
+            <div class="col-12 col-md-6">
+               <a href="/download"> <button class="btn">Download/Print Examination Form</button> </a>
+            </div>
+        
+
+            <div class="col-12 col-md-6">
+               <a href="/exreceipt"> <button class="btn">Download/Print Receipt</button> </a>
+            </div>
+            </div>
+            % else %
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <a href="/downloadclgreceipt"> <button class="btn">Download/Print Receipt</button> </a>
+                 </div>
+
+            </div>
+            % endif %--->
+
+        {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="popup popup-failure center col-md-11 col-10">
+                    <div class="icon">
+                        <!---<i class="fa fa-check"></i>-------this is for success----->
+                        <i class="fa fa-exclamation"></i><!----this is for failure----->
+                    </div>
+                    <div class="title">
+                        <h3>Payment Failed</h3> 
+                        <span style='font-size:100px;'>&#128549;</span>
+                        <h2>Transaction_ID{{ ORDERID }} </h2>
+                    </div>
+                    <div class="description">
+                   
+                        {{ RESPMSG }} {{context.exam}}
+                        
+                    </div>
+                    <form method="POST" action="/pay/">
+                        {% csrf_token %}
+                        <input style="display: none;" type="text" name="amt" value="{{ TXNAMOUNT|first }}">
+                        {% if exam == 'True' %}
+                            <input type="text"  style="display: none;" name="type" value="examfee">
+                        {% else  %}
+                        <input style="display: none;"  type="text" name="type" value="acadfee">
+                        {% endif %}
+                        <button type="submit">Retry Payment</button>
+                        
+                    </form>
+                    
+
+                </div>
+            </div>
+        </div>
+        
+       {% endif %}
+    </div>
 </body>
+<style>
+    body{
+        background: #ddd;
+        font-family: "Raleway";
+    }
+    .center{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    .popup{
+        width: 600px;
+        padding:30px 20px;
+        background: #f5f5f5;
+        border-radius: 10px;
+        box-sizing: 10px;
+        box-sizing: border-box;
+        z-index:2;
+        text-align: center;
+        opacity: 0;
+        top: -200%;
+        transform: translate(-50%,50%) scale(0.5);
+        transition: opacity 300ms ease-in-out,
+                    top 1000ms ease-in-out,
+                    transform 1000ms ease-in-out;
+    }
+    .popup.active{
+        opacity:1;
+        top:2%;
+        transform: translate(-50%,50%) scale(1);
+        transition: transform 300ms cubic-bezier(0.18,0.89,0.43,1.19);
+    }
+    
+   /**************************************this css is  for suceesss**************************/
+    .popup-success .icon{
+        margin: 5px 0px;
+        width:70px;
+        height: 70px;
+        border:2px solid #34f234;
+        text-align: center;
+        display: inline-block;
+        border-radius: 50%;
+        line-height: 70px;
+
+    }
+    .popup-success .icon i.fa{
+        font-size: 40px;
+        color:#34f234;
+
+    }
+    .popup-success .title{
+        margin: 5px 0px;
+        font-size: 30px;
+        font-weight: 600;
+
+
+    }
+
+    .popup-success .description{
+        color: #222;
+        font-size: 15px;
+        padding: 5px;
+
+    }
+    .popup-failure .icon{
+        margin: 5px 0px;
+        width:70px;
+        height: 70px;
+        border:2px solid red;
+        text-align: center;
+        display: inline-block;
+        border-radius: 50%;
+        line-height: 80px;
+    
+    }
+    .popup-failure .icon i.fa{
+        font-size: 40px;
+        color:red;
+    
+    }
+    .popup-failure .title{
+        margin: 5px 0px;
+        font-size: 30px;
+        font-weight: 600;
+    
+    
+    }
+    
+    .popup-failure .description{
+        color: #222;
+        font-size: 15px;
+        padding: 5px;
+    
+    }
+    .popup  button{
+        margin-top: 15px;
+    }
+    .popup button{
+        padding: 10px 20px;
+        background: #111;
+        color: #f5f5f5;
+        border:2px solid #111;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        outline:none;
+        border-radius: 10px;
+        transition: all 300ms ease-in-out;
+    }
+    .popup  button:hover{
+        color: #111;
+        background: #f5f5f5;
+    }
+    .popup > div{
+        position: relative;
+        top:10px;
+        opacity: 0;
+    }
+    .popup.active > div{
+        top:0px;
+        opacity:1;
+    }
+    .popup.active .icon{
+        transition: all 300ms ease-in-out 250ms;
+    }
+    .popup.active .title{
+        transition: all 300ms ease-in-out 250ms;
+    }
+    .popup.active .description{
+        transition: all 300ms ease-in-out 350ms;
+    }
+    .popup.active .dismiss-btn{
+        transition: all 300ms ease-in-out 400ms;
+    }
+    header{
+        font-style:Regular 400;
+        background-color:rgba(0,0,0);
+        
+    }
+</style>
+<script>
+    window.onload=function(){
+        document.getElementsByClassName("popup")
+        [0].classList.add("active");
+    };
+
+    /*document.getElementById("sucess-popup-btn")
+    .addEventListener("click",function(){
+        document.getElementsByClassName("popup")
+        [0].classList.remove("active");
+    });*/
+
+</script>
 </html>
