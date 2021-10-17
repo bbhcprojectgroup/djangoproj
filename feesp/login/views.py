@@ -106,7 +106,8 @@ def register(request):
              print(password1)
              """user = Account.objects.create_user(username=username, phone=phone, email=email, password=password1)
              user.save()
-             #request.session['username'] = user.username
+             #request.sess
+             phone=request.POST['phone']ion['username'] = user.username
              messages.success(request, 'user name created')   
     return render(request,'base.html')"""
              otp=''.join(random.choice(string.digits) for x in range(4))
@@ -118,15 +119,15 @@ def register(request):
                 print('oops')
              
              
-             client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
+            #  client = Client(settings.ACCOUNT_SID, settings.AUTH_TOKEN)
 
-             message = client.messages.create(
-                                        messaging_service_sid='MG7b8f86e6946c32ae3229d0859b794d89', 
-                                        body=f'Hi, your feepay otp is {otp}. Please enter this otp within 1 minute',
-                                        to="+91"+phone 
-                                        #to="+916362037635"
-                                    )
-             print(message.sid)
+            #  message = client.messages.create(
+            #                             messaging_service_sid='MG7b8f86e6946c32ae3229d0859b794d89', 
+            #                             body=f'Hi, your feepay otp is {otp}. Please enter this otp within 1 minute',
+            #                             to="+91"+phone 
+            #                             #to="+916362037635"
+            #                         )
+            #  print(message.sid)
              request.session['username']=username
              request.session['password1']=password1
              request.session['phone']=phone
@@ -220,7 +221,7 @@ def log_in(request):
                 messages.error(request, 'Invalid password')
               
         else:
-                messages.error(request, 'Username is not registered')
+                messages.error(request, 'Username/Email is not registered')
 
 
     return render(request,'base.html')
