@@ -4,13 +4,13 @@ FeePay portal is a web application which allows students to pay their academic a
 The main components of the portal are\
 1)Apply Concession \
 2)Pay Academic fees \
-3)Pay Examination fees \
+3)Pay Examination fees 
 ## Home Page
 ---
 ![image](https://user-images.githubusercontent.com/70084830/141634833-4cf187ff-43a1-4a84-b7aa-473969a573ba.png)
 **Technologies Used:**
 ---
-Django Framework \
+Django Framework 
 
 Frontend:HTML5,CSS3,Bootstrap,Javascript \
 Backend:Python \
@@ -45,4 +45,5 @@ python manage.py createsuperuser
 ## Admin Page
 ![image](https://user-images.githubusercontent.com/70084830/141643246-94414506-b326-44cf-816e-ccd4af8ddfe2.png)
 
-
+## For More Reference
+[django](https://djangoproject.com/start/)
