@@ -37,7 +37,6 @@ python manage.py migrate
 ```
 ### create admin
 ---
----
 ```python
 python manage.py createsuperuser
 ```
