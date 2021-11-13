@@ -11,6 +11,7 @@ The main components of the portal are
 **Technologies Used:**
 ---
 Django Framework
+
 Frontend:HTML5,CSS3,Bootstrap,Javascript
 Backend:Python
 Database:MySql(MariaDB)
